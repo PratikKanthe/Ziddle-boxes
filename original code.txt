@@ -1,0 +1,554 @@
+/////////////////////////////////////////////////////////////////////////HTML/////////////////////////////////////////////////////////////////////
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ziddle</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container wrap-animation">
+      <div class="upperdiv flex">
+        <div class="box box5 box-radius">
+          <div class="box-content box-content1">Box 5 Data</div>
+        </div>
+        <div class="box box4 box-radius">
+          <div class="box-content box-content1">Box 4 Data</div>
+        </div>
+        <div class="box box3 box-radius">
+          <div class="box-content box-content1">
+            <p class="subhead text-center">Supplier Credit Period</p>
+            <h1 class="box-heading">56 Days</h1>
+            <div class="text-center">
+              <p>Last 3 months</p>
+              <p>Previous months</p>
+              <p>23 Days</p>
+            </div>
+          </div>
+        </div>
+        <div class="box box2 box-radius">
+          <div class="box-content box-content1">Box 2 Data</div>
+        </div>
+        <div class="box box1 box-radius">
+          <div class="box-content box-content1">Box 1 Data</div>
+        </div>
+      </div>
+      <div class="profit">
+        <div class="profit-data text-center">
+          <div class="cashflow">
+            <p>cashflow :</p>
+            <h1 class="profit-heading">86.67</h1>
+            <p><span class="subhead">cr.</span> coming 2 months</p>
+          </div>
+        </div>
+        <div class="profit-text">
+          <p>
+            "Marvelous Your Net Cashflow is INR 60.23 Cr. in the coming couple
+            of months is projected to be satisfactory"
+          </p>
+        </div>
+      </div>
+      <div class="lower-div flex">
+        <div class="box box6 box-radius2">
+          <div class="box-content">Box 6 Data</div>
+        </div>
+        <div class="box box7 box-radius2">
+          <div class="box-content">Box 7 Data</div>
+        </div>
+        <div class="box box8 box-radius2">
+          <div class="box-content">Box 8 Data</div>
+        </div>
+        <div class="box box9 box-radius2">
+          <div class="box-content">Box 9 Data</div>
+        </div>
+        <div class="box box10 box-radius2">
+          <div class="box-content">Box 10 Data</div>
+        </div>
+      </div>
+    </div>
+
+    <select
+      id="animationBehaviour"
+      aria-label="label for the select behaviour"
+      class="btn"
+    >
+      <option value="select">Select Animation Behaviour</option>
+      <option value="onhover">Hover</option>
+      <option value="onclick">Click</option>
+    </select>
+    <select id="animationSelect" aria-label="label for the select" class="btn">
+      <option value="select">Select an animation</option>
+      <option value="simple">Simple Animation</option>
+      <option value="random">Random Animation</option>
+      <option value="bounce">Bounce Animation</option>
+      <option value="rotate">Rotate Animation</option>
+      <option value="zoom">Zoom Animation</option>
+      <option value="flip">Flip Animation</option>
+      <option value="slide-in">Slide-in Animation</option>
+    </select>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+/////////////////////////////////////////////////////////////////////////Javascript//////////////////////////////////////////////////////////////
+
+const boxes = document.querySelectorAll(".box");
+const profitDiv = document.querySelector(".profit");
+const scores = [50, 100, 75, 125, 150, 90, 110, 130, 70, 60];
+
+const upperDivBoxes = Array.from(boxes).slice(0, 5).reverse();
+const lowerDivBoxes = Array.from(boxes).slice(5);
+const allBoxes = upperDivBoxes.concat(lowerDivBoxes);
+
+function resetBoxes() {
+  allBoxes.forEach((box) => {
+    box.style.height = "20px"; // Default Height
+    box.classList.remove(
+      "appear",
+      "bounce",
+      "rotate",
+      "zoom",
+      "flip",
+      "slide-in",
+      "grow"
+    );
+    box.querySelector(".box-content").style.display = "none"; // Hide box content
+  });
+  profitDiv.classList.remove("appear");
+  profitDiv.style.opacity = "0";
+}
+
+function applyAnimation(animationClass) {
+  profitDiv.classList.add("appear");
+  profitDiv.style.opacity = "1"; // Set opacity to 1 when animation starts
+
+  allBoxes.forEach((box, index) => {
+    setTimeout(() => {
+      box.classList.add("appear");
+      box.classList.add(animationClass);
+    }, index * 300);
+  });
+
+  setTimeout(() => {
+    allBoxes.forEach((box) => {
+      box.style.height = "20px"; // Set height to 20px after animation
+    });
+  }, allBoxes.length * 300);
+}
+
+function handleBoxClick(event) {
+  const box = event.currentTarget;
+  const content = box.querySelector(".box-content");
+
+  // Prevent box from growing if opacity is 0
+  if (window.getComputedStyle(box).opacity === "0") {
+    return;
+  }
+
+  if (content.style.display === "none" || content.style.display === "") {
+    setTimeout(() => {
+      content.style.display = "flex";
+    }, 500); //add content after 0.5 sec
+    box.style.height = "200px"; // Expand height to 200px
+  } else {
+    content.style.display = "none";
+    box.style.height = "20px"; // Reset height to 20px
+  }
+}
+
+function handleMouseEnter(event) {
+  const box = event.currentTarget;
+  box.classList.add("grow"); // Apply grow class on hover
+  const content = box.querySelector(".box-content");
+
+  if (content.style.display === "none" || content.style.display === "") {
+    setTimeout(() => {
+      content.style.display = "flex";
+    }, 500); //add content after 0.5 sec
+  } else {
+    content.style.display = "none";
+  }
+}
+
+function handleMouseLeave(event) {
+  const box = event.currentTarget;
+  box.classList.remove("grow"); // Remove grow class when hover ends
+  const content = box.querySelector(".box-content");
+  content.style.display = "none";
+}
+
+boxes.forEach((box) => {
+  box.addEventListener("click", handleBoxClick);
+});
+
+document.getElementById("animationSelect").addEventListener("change", () => {
+  resetBoxes();
+  const selectedAnimation = document.getElementById("animationSelect").value;
+
+  if (selectedAnimation === "simple") {
+    applyAnimation("appear");
+  } else if (selectedAnimation === "random") {
+    allBoxes.forEach((box, index) => {
+      setTimeout(() => {
+        box.classList.add("appear");
+      }, Math.floor(Math.random() * 1000) + 300);
+    });
+    profitDiv.classList.add("appear");
+    profitDiv.style.opacity = "1";
+  } else if (selectedAnimation === "bounce") {
+    applyAnimation("bounce");
+  } else if (selectedAnimation === "rotate") {
+    applyAnimation("rotate");
+  } else if (selectedAnimation === "zoom") {
+    applyAnimation("zoom");
+  } else if (selectedAnimation === "flip") {
+    applyAnimation("flip");
+  } else if (selectedAnimation === "slide-in") {
+    applyAnimation("slide-in");
+  }
+});
+
+const behaviorSelect = document.getElementById("animationBehaviour");
+
+behaviorSelect.addEventListener("change", () => {
+  const selectedBehavior = behaviorSelect.value;
+
+  boxes.forEach((box) => {
+    box.classList.remove("grow");
+
+    if (selectedBehavior === "onhover") {
+      // Grow on hover
+      box.addEventListener("mouseenter", handleMouseEnter);
+      box.addEventListener("mouseleave", handleMouseLeave);
+      box.removeEventListener("click", handleBoxClick); // Remove click listener
+    } else if (selectedBehavior === "onclick") {
+      // Grow on click
+      box.removeEventListener("mouseenter", handleMouseEnter);
+      box.removeEventListener("mouseleave", handleMouseLeave);
+      box.addEventListener("click", handleBoxClick);
+    }
+  });
+});
+
+/////////////////////////////////////////////////////////////////////////CSS/////////////////////////////////////////////////////////////////////
+:root {
+    --box-clr: radial-gradient(#ffffff, #e2e8f0);
+    --border-clr: #6D9EEB;
+    --border-green: #22c55e;
+    --border-orange: #f59e0b;
+    --border-red: #ef4444;
+    --clr: #595959;
+    --font-text: 18px;
+    --box-height: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.text-center{
+    text-align: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.flex {
+    display: flex;
+    gap: 5rem;
+}
+
+.upperdiv {
+    transform: rotate(180deg);
+}
+
+.profit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 80vw;
+    border: 5px solid var(--border-clr);
+    transform: translateY(-50px);
+    border-radius: 5px;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    background: var(--box-clr);
+    position: relative;
+    z-index: 1;
+}
+
+.profit.appear {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.profit-data {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 5rem;
+}
+
+.cashflow {
+    font-size: var(--font-text);
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.subhead {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.profit-heading {
+    font-size: 4rem;
+}
+.box-heading {
+    font-size: 2rem;
+}
+
+.profit-text {
+    width: 30%;
+    padding-right: 2rem;
+}
+
+.box {
+    background: var(--box-clr);
+    width: 10vw;
+    height: 20px;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: transform 0.6s ease, opacity 0.6s ease, height 0.4s ease;
+    border: 2px solid var(--border-clr);
+    position: relative;
+}
+
+
+/* Growing Animation*/
+.box.expand {
+    animation: grow 0.4s ease forwards;
+}
+
+@keyframes grow {
+    0% {
+        height: var(--box-height);
+    }
+
+    100% {
+        height: 200px;
+    }
+}
+
+.box1 {
+    border-color: var(--border-orange);
+}
+
+.box-radius {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.box-radius2 {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.box2 {
+    border-color: var(--border-red);
+}
+
+.box3 {
+    border-color: var(--border-green);
+}
+
+.box4 {
+    border-color: var(--border-clr);
+}
+
+.box5 {
+    border-color: var(--border-orange);
+}
+
+.box6 {
+    border-color: var(--border-red);
+}
+
+.box7 {
+    border-color: var(--border-green);
+}
+
+.box8 {
+    border-color: var(--border-clr);
+}
+
+.box9 {
+    border-color: var(--border-orange);
+}
+
+.box10 {
+    border-color: var(--border-red);
+}
+
+.box.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.box-content1{
+    transform: rotate(180deg);
+}
+.box-content{
+    padding: 5px;
+    font-size: 15px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.box.hidden {
+    opacity: 0.5;
+    transform: translateY(30px);
+}
+
+.box.hidden.appear {
+    opacity: 0.5;
+    transform: translateY(0);
+}
+
+.box.full {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.box.bounce {
+    animation: bounce 1s ease;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+.box.rotate {
+    animation: rotateIn 1s ease;
+}
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-90deg) translateY(-30px);
+    }
+
+    100% {
+        transform: rotate(0) translateY(0);
+    }
+}
+
+.box.zoom {
+    animation: zoomIn 1s ease;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5) translateY(-30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.box.flip {
+    animation: flipIn 1s ease;
+    transform-origin: center;
+}
+
+@keyframes flipIn {
+    0% {
+        transform: rotateY(-180deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotateY(0);
+        opacity: 1;
+    }
+}
+
+.box.slide-in {
+    animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-50vw);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.btn {
+    margin-left: 0.5rem;
+    padding: 0.2rem;
+}
+
+/* For scrolling */
+.scroll-container {
+    width: 80vw;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carousel {
+    display: flex;
+    gap: 2rem;
+    width: max-content; /* Adjust to fit content */
+  }
+
+  .box.grow {
+    animation: grow 0.4s ease forwards;
+  }
