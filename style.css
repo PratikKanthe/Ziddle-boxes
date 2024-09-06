@@ -5,6 +5,7 @@
     --border-orange: #f59e0b;
     --border-red: #ef4444;
     --clr: #595959;
+    --clr-link: #334155;
     --font-text: 18px;
     --box-height: 10px;
 }
@@ -101,7 +102,7 @@ body {
 
 .box {
     background: var(--box-clr);
-    width: 10vw;
+    min-width: 10vw;
     height: 20px;
     opacity: 0;
     transform: translateY(-30px);
@@ -195,7 +196,7 @@ body {
     font-size: 15px;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     transition: transform 0.6s ease, opacity 0.6s ease;
 }
@@ -371,10 +372,80 @@ body {
   /* Fading animation */
 .fade {
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
   }
   
   @keyframes fade {
-    from {opacity: .4}
+    from {opacity: .7}
     to {opacity: 1}
+  }
+  .scroll-upperdiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+  }
+  .carousel-upperdiv{
+    width: max-content;
+  }
+
+  .prevup,
+  .nextup {
+      position: absolute;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+      bottom: 0;
+  }
+  .prevup{
+    left: 2%;
+    /* display: none; */
+  }
+  .nextup{
+    right: 2%;
+    /* display: none; */
+  }
+  .scroll-lowerdiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+  }
+  .carousel-upperdiv{
+    overflow-x: auto;
+  }
+  .prevlow,
+  .nextlow {
+      position: absolute;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+      /* bottom: 0; */
+  }
+  .carousel-lowerdiv{
+    overflow-x: auto;
+    width: max-content;
+  }
+  .prevlow{
+    left: 2%;
+    display: none;
+  }
+  .nextlow{
+    right: 2%;
+    display: none;
+  }
+
+  .know a{
+    text-decoration: none;
+    color: var(--clr-link);
   }

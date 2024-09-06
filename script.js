@@ -175,3 +175,32 @@ function showSlides(n) {
   }
   slides[slideIndex - 1].style.display = "flex";
 }
+
+// Carousel functionality
+let slideIndex1 = 1;
+showSlidesUp(slideIndex1);
+
+// Next/previous controls
+function plusSlidesup(n) {
+  showSlidesUp((slideIndex1 += n));
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlidesUp((slideIndex1 = n));
+}
+
+function showSlidesUp(n) {
+  let i;
+  let slides = document.getElementsByClassName("upperdiv");
+  if (n > slides.length) {
+    slideIndex1 = 1;
+  }
+  if (n < 1) {
+    slideIndex1 = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex1 - 1].style.display = "flex";
+}
