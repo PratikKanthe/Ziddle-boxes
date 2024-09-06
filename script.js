@@ -35,11 +35,11 @@ function applyAnimation(animationClass) {
     }, index * 300);
   });
 
-  setTimeout(() => {
-    allBoxes.forEach((box) => {
-      box.style.height = "20px"; // Set height to 20px after animation
-    });
-  }, allBoxes.length * 300);
+  // setTimeout(() => {
+  //   allBoxes.forEach((box) => {
+  //     box.style.height = "20px"; // Set height to 20px after animation
+  //   });
+  // }, allBoxes.length * 300); // here the hight was settled for base state of boxes causing issue
 }
 
 function handleBoxClick(event) {
@@ -56,6 +56,14 @@ function handleBoxClick(event) {
       content.style.display = "flex";
     }, 500); // Add content after 0.5 sec
     box.style.height = "200px"; // Expand height to 200px
+
+    // if ((box.style.height = "200px")) {
+    //   setTimeout(() => {
+    //     content.style.display = "flex";
+    //   }, 500); // Add content after 0.5 sec
+    // } else {
+    //   content.style.display = "none";
+    // }
   } else {
     content.style.display = "none";
     box.style.height = "20px"; // Reset height to 20px
@@ -72,15 +80,15 @@ function handleMouseEnter(event) {
       content.style.display = "flex";
     }, 500); // Add content after 0.5 sec
   } else {
-    content.style.display = "none";
+    // content.style.display = "none";
   }
 }
 
 function handleMouseLeave(event) {
-  const box = event.currentTarget;
-  box.classList.remove("grow"); // Remove grow class when hover ends
-  const content = box.querySelector(".box-content");
-  content.style.display = "none";
+  // const box = event.currentTarget;
+  // box.classList.remove("grow"); // Remove grow class when hover ends
+  // const content = box.querySelector(".box-content");
+  // content.style.display = "none";
 }
 
 // Add click listener initially for default behavior
