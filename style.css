@@ -1,4 +1,3 @@
-
 :root {
     --box-clr: radial-gradient(#ffffff, #e2e8f0);
     --border-clr: #6D9EEB;
@@ -20,11 +19,12 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
-.text-center{
+
+.text-center {
     text-align: center;
 }
 
-.slider{
+.slider {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -47,6 +47,24 @@ body {
 
 .upperdiv {
     transform: rotate(180deg);
+    overflow-x: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+}
+
+.upperdiv::-webkit-scrollbar {
+    width: 0;
+}
+
+.lower-div {
+    overflow-x: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.lower-div::-webkit-scrollbar {
+    width: 0;
 }
 
 .profit {
@@ -92,6 +110,7 @@ body {
 .profit-heading {
     font-size: 4rem;
 }
+
 .box-heading {
     font-size: 2rem;
 }
@@ -189,10 +208,11 @@ body {
     transform: translateY(0);
 }
 
-.box-content1{
+.box-content1 {
     transform: rotate(180deg);
 }
-.box-content{
+
+.box-content {
     padding: 5px;
     font-size: 15px;
     flex-direction: column;
@@ -315,38 +335,41 @@ body {
     overflow-x: auto;
     display: flex;
     /* justify-content: center; */
-  }
-  
-  .carousel {
+}
+
+.carousel {
     display: flex;
     gap: 2rem;
-    width: max-content; /* Adjust to fit content */
-  }
+    width: max-content;
+    /* Adjust to fit content */
+}
 
-  .box.grow {
+.box.grow {
     animation: grow 0.4s ease forwards;
-  }
-  .prev,
-  .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
-  }
-  
-  .prev {
-      left: 10px;
-  }
-  
-  .next {
-      right: 10px;
-  }
-  /* .prev, .next {
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* .prev, .next {
     cursor: pointer;
     position: absolute;
     width: auto;
@@ -370,83 +393,154 @@ body {
     top: 35%;
   } */
 
-  /* Fading animation */
+/* Fading animation */
 .fade {
     animation-name: fade;
     animation-duration: 1s;
-  }
-  
-  @keyframes fade {
-    from {opacity: .7}
-    to {opacity: 1}
-  }
-  .scroll-upperdiv{
+}
+
+@keyframes fade {
+    from {
+        opacity: .7
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.scroll-upperdiv {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80vw;
-  }
-  .carousel-upperdiv{
-    width: max-content;
-  }
+}
 
-  .prevup,
-  .nextup {
-      position: absolute;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
-      bottom: 0;
-  }
-  .prevup{
+.carousel-upperdiv {
+    width: max-content;
+    overflow-x: auto;
+}
+
+.carousel-upperdiv::-webkit-scrollbar {
+    width: 0;
+}
+
+.prevup,
+.nextup {
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    bottom: 0;
+}
+
+.prevup {
     left: 2%;
     /* display: none; */
-  }
-  .nextup{
+}
+
+.nextup {
     right: 2%;
     /* display: none; */
-  }
-  .scroll-lowerdiv{
-    position: relative;
+}
+
+.scroll-lowerdiv {
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80vw;
-  }
-  .carousel-upperdiv{
+    overflow: hidden;
+    /* Ensure overflow is hidden */
+}
+
+.carousel-upperdiv {
+    display: flex;
+    width: 100%;
+    /* Make it take full width of its parent */
     overflow-x: auto;
-  }
-  .prevlow,
-  .nextlow {
-      position: absolute;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
-      /* bottom: 0; */
-  }
-  .carousel-lowerdiv{
+    /* Ensure horizontal scrolling is enabled */
+    scroll-behavior: smooth;
+    /* Add smooth scrolling effect */
+}
+
+.prevlow,
+.nextlow {
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    /* bottom: 0; */
+}
+
+.carousel-lowerdiv {
     overflow-x: auto;
     width: max-content;
-  }
-  .prevlow{
+    position: relative;
+}
+
+.prevlow {
     left: 2%;
     display: none;
-  }
-  .nextlow{
+}
+
+.nextlow {
     right: 2%;
     display: none;
-  }
+}
 
-  .know a{
+.know a {
     text-decoration: none;
     color: var(--clr-link);
-  }
+}
+
+.prevup,
+.nextup {
+    position: absolute;
+    /* top: 20%; */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.prevup {
+    left: 1px;
+}
+
+.nextup {
+    right: 1px;
+}
+
+.prevdown,
+.nextdown {
+    position: absolute;
+    /* bottom: 20%; */
+    transform: translateY(-6%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.prevdown {
+    left: 10%;
+}
+
+.nextdown {
+    right: 10%;
+}
