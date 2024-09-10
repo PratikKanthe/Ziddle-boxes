@@ -284,3 +284,39 @@ document
 document
   .querySelector(".nextdown")
   .addEventListener("click", () => plusSlidesLower(1));
+
+const knowLinks = document.querySelectorAll(".know-click");
+
+knowLinks.forEach((knowLink) => {
+  knowLink.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    const profitData = document.querySelector(".profit-data");
+    const profitText = document.querySelector(".profit-text");
+    const profitPopup = document.querySelector(".profit-popup");
+    if (profitPopup && profitPopup.style.display === "flex") {
+      profitPopup.style.display = "none";
+      if (profitData) profitData.style.display = "flex";
+      if (profitText) profitText.style.display = "flex";
+    } else {
+      if (profitData) profitData.style.display = "none";
+      if (profitText) profitText.style.display = "none";
+      if (profitPopup) profitPopup.style.display = "flex";
+    }
+  });
+});
+
+const readbtn = document.querySelectorAll(".read-btn");
+
+knowLinks.forEach((knowLink) => {
+  readbtn.addEventListener("click", function (event) {
+    event.stopPropagation();
+    alert("clicked");
+    const profitPopup2 = document.querySelector(".profit-popup");
+    if (profitPopup2 && profitPopup.style.display === "flex") {
+      profitPopup2.style.display = "none";
+    } else {
+      if (profitPopup2) profitPopup2.style.display = "flex";
+    }
+  });
+});
