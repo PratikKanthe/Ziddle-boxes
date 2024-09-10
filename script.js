@@ -1,367 +1,9 @@
 const slider = document.getElementById("slider");
-slider.innerHTML = `
-<div class="scroll-container">
-      <div class="carousel">
-        <div class="container fade">
-          <div class="scroll-upperdiv">
-            <div class="carousel-upperdiv">
-              <div class="upperdiv flex">
-                <div class="box box5 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">56 Days</h1>
-                    <div class="text-center">
-                      <p>Last 2 months</p>
-                      <p>Previous months</p>
-                      <p>28 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box5 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">56 Days</h1>
-                    <div class="text-center">
-                      <p>Last 2 months</p>
-                      <p>Previous months</p>
-                      <p>28 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box5 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">56 Days</h1>
-                    <div class="text-center">
-                      <p>Last 2 months</p>
-                      <p>Previous months</p>
-                      <p>28 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box4 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">58 Days</h1>
-                    <div class="text-center">
-                      <p>Last 4 months</p>
-                      <p>Previous months</p>
-                      <p>25 Days</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box3 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">65 Days</h1>
-                    <div class="text-center">
-                      <p>Last 3 months</p>
-                      <p>Previous months</p>
-                      <p>15 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="page.html">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box2 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">45 Days</h1>
-                    <div class="text-center">
-                      <p>Last 6 months</p>
-                      <p>Previous months</p>
-                      <p>10 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box1 box-radius">
-                  <div class="box-content box-content1">
-                    <p class="subhead text-center">Supplier Credit Period</p>
-                    <h1 class="box-heading">92 Days</h1>
-                    <div class="text-center">
-                      <p>Last 7 months</p>
-                      <p>Previous months</p>
-                      <p>29 Days</p>
-                    </div>
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <a class="prevup" onclick="plusSlidesUpper(-1)">&#10094;</a>
-            <a class="nextup" onclick="plusSlidesUpper(1)">&#10095;</a>
-          </div>
-          <div class="profit">
-            <div class="profit-data text-center">
-              <div class="cashflow">
-                <p>cashflow :</p>
-                <h1 class="profit-heading">86.67</h1>
-                <p><span class="subhead">cr.</span> coming 2 months</p>
-              </div>
-            </div>
-            <div class="profit-text">
-              <p>
-                "Marvelous Your Net Cashflow is INR 60.23 Cr. in the coming
-                couple of months is projected to be satisfactory"
-              </p>
-            </div>
-          </div>
-
-          <div class="scroll-lowerdiv">
-            <div class="carousel-lowerdiv">
-              <div class="lower-div flex">
-                <div class="box box6 box-radius2">
-                  <div class="box-content">
-                    Box 6 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box7 box-radius2">
-                  <div class="box-content">
-                    Box 7 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box8 box-radius2">
-                  <div class="box-content">
-                    Box 8 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box9 box-radius2">
-                  <div class="box-content">
-                    Box 9 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box10 box-radius2">
-                  <div class="box-content">
-                    Box 10 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box10 box-radius2">
-                  <div class="box-content">
-                    Box 10 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="box box10 box-radius2">
-                  <div class="box-content">
-                    Box 10 Data
-                    <div class="know">
-                      <a href="#">Know More...</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="prevdown" onclick="plusSlidesLower(-1)">&#10094;</a>
-            <a class="nextdown" onclick="plusSlidesLower(1)">&#10095;</a>
-          </div>
-
-          <!-- Carousel Controls for Lower Div -->
-          <a class="prev" onclick="plusSlidesLower(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlidesLower(1)">&#10095;</a>
-        </div>
-
-        <div class="container fade">
-          <div class="upperdiv flex">
-            <div class="box box5 box-radius">
-              <div class="box-content box-content1">Box 5 Data</div>
-            </div>
-            <div class="box box4 box-radius">
-              <div class="box-content box-content1">Box 4 Data</div>
-            </div>
-            <div class="box box3 box-radius">
-              <div class="box-content box-content1">
-                <p class="subhead text-center">Supplier Credit Period</p>
-                <h1 class="box-heading">56 Days</h1>
-                <div class="text-center">
-                  <p>Last 3 months</p>
-                  <p>Previous months</p>
-                  <p>23 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box2 box-radius">
-              <div class="box-content box-content1">Box 2 Data</div>
-            </div>
-            <div class="box box1 box-radius">
-              <div class="box-content box-content1">Box 1 Data</div>
-            </div>
-          </div>
-          <div class="profit">
-            <div class="profit-data text-center">
-              <div class="cashflow">
-                <p>SalesOrder :</p>
-                <h1 class="profit-heading">1.5</h1>
-                <p><span class="subhead">cr.</span> coming 2 months</p>
-              </div>
-            </div>
-            <div class="profit-text">
-              <p>
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Molestias explicabo fugiat molestiae perspiciatis neque
-                asperiores.""
-              </p>
-            </div>
-          </div>
-          <div class="lower-div flex">
-            <div class="box box6 box-radius2">
-              <div class="box-content">
-                <p class="subhead text-center">Sundry Credit Period</p>
-                <h1 class="box-heading">56 Days</h1>
-                <div class="text-center">
-                  <p>Last 2 months</p>
-                  <p>Previous months</p>
-                  <p>28 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box7 box-radius2">
-              <div class="box-content">
-                <p class="subhead text-center">Lorem, ipsum dolor.</p>
-                <h1 class="box-heading">82 Days</h1>
-                <div class="text-center">
-                  <p>Last 2 months</p>
-                  <p>Previous months</p>
-                  <p>28 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box8 box-radius2">
-              <div class="box-content">
-                <p class="subhead text-center">Lorem ipsum dolor sit.</p>
-                <h1 class="box-heading">75 Days</h1>
-                <div class="text-center">
-                  <p>Last 2 months</p>
-                  <p>Previous months</p>
-                  <p>28 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box9 box-radius2">
-              <div class="box-content">
-                <p class="subhead text-center">Lorem, ipsum.</p>
-                <h1 class="box-heading">28 Days</h1>
-                <div class="text-center">
-                  <p>Last 2 months</p>
-                  <p>Previous months</p>
-                  <p>28 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box10 box-radius2">
-              <div class="box-content">
-                <p class="subhead text-center">Lorem ipsum dolor sit amet.</p>
-                <h1 class="box-heading">24 Days</h1>
-                <div class="text-center">
-                  <p>Last 2 months</p>
-                  <p>Previous months</p>
-                  <p>28 Days</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="container fade">
-          <div class="upperdiv flex">
-            <div class="box box5 box-radius">
-              <div class="box-content box-content1">Box 5 Data</div>
-            </div>
-            <div class="box box4 box-radius">
-              <div class="box-content box-content1">Box 4 Data</div>
-            </div>
-            <div class="box box3 box-radius">
-              <div class="box-content box-content1">
-                <p class="subhead text-center">Supplier Credit Period</p>
-                <h1 class="box-heading">56 Days</h1>
-                <div class="text-center">
-                  <p>Last 3 months</p>
-                  <p>Previous months</p>
-                  <p>23 Days</p>
-                </div>
-              </div>
-            </div>
-            <div class="box box2 box-radius">
-              <div class="box-content box-content1">Box 2 Data</div>
-            </div>
-            <div class="box box1 box-radius">
-              <div class="box-content box-content1">Box 1 Data</div>
-            </div>
-          </div>
-          <div class="profit">
-            <div class="profit-data text-center">
-              <div class="cashflow">
-                <p>Purchase Order :</p>
-                <h1 class="profit-heading">2</h1>
-                <p><span class="subhead">cr.</span> coming 1 months</p>
-              </div>
-            </div>
-            <div class="profit-text">
-              <p>
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Laborum, in voluptates. Numquam iure dolores quod?"
-              </p>
-            </div>
-          </div>
-          <div class="lower-div flex">
-            <div class="box box6 box-radius2">
-              <div class="box-content">Box 6 Data</div>
-            </div>
-            <div class="box box7 box-radius2">
-              <div class="box-content">Box 7 Data</div>
-            </div>
-            <div class="box box8 box-radius2">
-              <div class="box-content">Box 8 Data</div>
-            </div>
-            <div class="box box9 box-radius2">
-              <div class="box-content">Box 9 Data</div>
-            </div>
-            <div class="box box10 box-radius2">
-              <div class="box-content">Box 10 Data</div>
-            </div>
-          </div>
-        </div>
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-    </div>
-`;
+// slider.innerHTML = ``;
 
 const boxes = document.querySelectorAll(".box");
 const profitDiv = document.querySelector(".profit");
-const scores = [50, 100, 75, 125, 150, 90, 110, 130, 70, 60];
+const scores = [50, 100, 75, 125, 150, 90, 110, 130, 70, 60]; // here
 
 //upper div
 const prevButton = document.querySelector(".prevup");
@@ -377,39 +19,45 @@ nextDownButton.style.display = "none";
 
 const upperDivBoxes = Array.from(boxes).slice(0, 5).reverse();
 const lowerDivBoxes = Array.from(boxes).slice(5);
-const allBoxes = upperDivBoxes.concat(lowerDivBoxes);
+const allBoxes = boxes; // upperDivBoxes.concat(lowerDivBoxes);
 
-// Function to generate a random dark color
-function getRandomDarkColor() {
-  let color;
-  do {
-    color = getRandomColor(); // Get a random color
-  } while (isColorLight(color)); // Keep generating until it's dark enough
-  return color;
-}
+//border color code
+document.addEventListener("DOMContentLoaded", function () {
+  // Define warm and cold color arrays
+  const warmColors = [
+    "var(--border-warm1)",
+    "var(--border-warm2)",
+    "var(--border-warm3)",
+    "var(--border-warm4)",
+  ];
+  const coldColors = [
+    "var(--border-cold1)",
+    "var(--border-cold2)",
+    "var(--border-cold3)",
+    "var(--border-cold4)",
+  ];
 
-// Function to generate a random color in hex format
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+  const upperdivs = document.querySelectorAll(".upperdiv");
+  const lowerdivs = document.querySelectorAll(".lower-div");
+  //upper div
+  upperdivs.forEach((upperdiv) => {
+    const upperdivBoxes = upperdiv.querySelectorAll(".box");
+    upperdivBoxes.forEach((box) => {
+      const randomColdColor =
+        coldColors[Math.floor(Math.random() * coldColors.length)];
+      box.style.borderColor = randomColdColor;
+    });
+  });
 
-// Function to check if a color is light
-function isColorLight(hexColor) {
-  const r = parseInt(hexColor.slice(1, 3), 16);
-  const g = parseInt(hexColor.slice(3, 5), 16);
-  const b = parseInt(hexColor.slice(5, 7), 16);
-  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return luminance > 127;
-}
-
-// Apply random dark border color to each box
-boxes.forEach((box) => {
-  box.style.borderColor = getRandomDarkColor();
+  // lower div
+  lowerdivs.forEach((lowerdiv) => {
+    const lowerdivBoxes = lowerdiv.querySelectorAll(".box");
+    lowerdivBoxes.forEach((box) => {
+      const randomWarmColor =
+        warmColors[Math.floor(Math.random() * warmColors.length)];
+      box.style.borderColor = randomWarmColor;
+    });
+  });
 });
 
 function resetBoxes() {
@@ -462,7 +110,7 @@ function handleBoxClick(event) {
     setTimeout(() => {
       content.style.display = "flex";
     }, 500); // Add content after 0.5 sec
-    box.style.height = "200px"; // Expand height to 200px
+    box.style.height = "210px"; // Expand height to 210px
   } else {
     content.style.display = "none";
     box.style.height = "20px"; // Reset height to 20px
@@ -494,7 +142,6 @@ function handleMouseLeave(event) {
 boxes.forEach((box) => {
   box.addEventListener("click", handleBoxClick);
 });
-
 // Change animation based on dropdown selection
 document.getElementById("animationSelect").addEventListener("change", () => {
   resetBoxes();
@@ -521,6 +168,12 @@ document.getElementById("animationSelect").addEventListener("change", () => {
   } else if (selectedAnimation === "slide-in") {
     applyAnimation("slide-in");
   }
+});
+
+// onload simple animation
+window.addEventListener("load", () => {
+  resetBoxes(); // reset other animations for boxes first
+  applyAnimation("appear");
 });
 
 // Handle animation behavior change
@@ -581,10 +234,8 @@ const slightScrollAmount = slideAmount / 2;
 
 function plusSlidesUpper(n) {
   const carousel = document.querySelector(".upperdiv");
-  // Slide by the slight scroll amount
   if (n === 1) {
     // Slide to the next box
-
     carousel.scrollBy({
       left: -slightScrollAmount,
       behavior: "smooth",
@@ -598,7 +249,6 @@ function plusSlidesUpper(n) {
   }
 }
 
-// Add event listeners to the buttons
 document
   .querySelector(".prevup")
   .addEventListener("click", () => plusSlidesUpper(-1));
@@ -612,7 +262,7 @@ const slightScrollAmount1 = slideAmount1 / 2;
 
 function plusSlidesLower(n) {
   const carousel = document.querySelector(".lower-div");
-  // Slide by the slight scroll amount
+
   if (n === 1) {
     // Slide to the next box
     prevDownButton.style.display = "block";
@@ -628,7 +278,6 @@ function plusSlidesLower(n) {
   }
 }
 
-// Add event listeners to the buttons
 document
   .querySelector(".prevdown")
   .addEventListener("click", () => plusSlidesLower(-1));

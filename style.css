@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&display=swap');
 :root {
-    --box-clr: radial-gradient(#ffffff, #e2e8f0);
-    --border-clr: #6D9EEB;
+    --box-clr: radial-gradient(circle, #ffffff 10%, #e5e5e5 100%);
+    --border-clr: #3E7FBB;
     --border-green: #22c55e;
     --border-orange: #f59e0b;
     --border-red: #ef4444;
-    --clr: #595959;
+    --clr: #464646;
     --clr-link: #334155;
     --font-text: 18px;
     --box-height: 10px;
+    --font-anek: "Anek Latin", sans-serif;
+    --clr-heading: #000000;
+    --clr-subhead: #000000;
+    --border-warm1: #90a8c3;
+    --border-warm2: #FF6500;
+    --border-warm3: #FF8A08;
+    --border-warm4: #FFC100;
+    --border-cold1: #bce784;
+    --border-cold2: #5dd39e;
+    --border-cold3: #348aa7;
+    --border-cold4: #525174;
 }
 
 * {
@@ -17,11 +29,17 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-anek);
+    color: var(--clr);
+    font-size: 14pt;
 }
 
 .text-center {
     text-align: center;
+}
+
+.last{
+    font-size: 12.5pt;
 }
 
 .slider {
@@ -42,13 +60,13 @@ body {
 
 .flex {
     display: flex;
-    gap: 5rem;
+    gap: 4rem;
 }
 
 .upperdiv {
     transform: rotate(180deg);
     overflow-x: auto;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     padding-right: 1rem;
     display: flex;
 }
@@ -60,7 +78,7 @@ body {
 .lower-div {
     overflow-x: auto;
     padding-left: 1rem;
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
 }
 
 .lower-div::-webkit-scrollbar {
@@ -71,11 +89,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
-    width: 80vw;
-    border: 5px solid var(--border-clr);
-    /* transform: translateY(-50px); */
-    border-radius: 5px;
+    height: 120pt;
+    width: 100vw;
+    border: 4pt solid var(--border-clr);
+    border-left: none;
+    border-right: none;
     transition: transform 0.6s ease, opacity 0.6s ease;
     background: var(--box-clr);
     position: relative;
@@ -104,15 +122,26 @@ body {
 
 .subhead {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 24pt;
+    color: var(--clr-subhead);
+    font-weight: 500;
 }
-
+.box-content .subhead{
+    font-size: 14pt;
+}
 .profit-heading {
-    font-size: 4rem;
+    font-size: 100pt;
+    color: var(--clr-heading);
+    font-weight: 500;
 }
 
 .box-heading {
-    font-size: 2rem;
+    font-size: 37.5pt;
+    font-weight: 500;
+}
+
+.days{
+    font-size: 18pt;
 }
 
 .profit-text {
@@ -122,7 +151,7 @@ body {
 
 .box {
     background: var(--box-clr);
-    min-width: 10vw;
+    min-width: 13vw;
     height: 20px;
     opacity: 0;
     transform: translateY(-30px);
@@ -143,7 +172,7 @@ body {
     }
 
     100% {
-        height: 200px;
+        height: 210px;
     }
 }
 
@@ -152,19 +181,19 @@ body {
 }
 
 .box-radius {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 2pt;
+    border-bottom-right-radius: 2pt;
     border-top: none;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    border-top-left-radius: 0pt;
+    border-top-right-radius: 0pt;
 }
 
 .box-radius2 {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 2pt;
+    border-bottom-right-radius: 2pt;
     border-top: none;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    border-top-left-radius: 0pt;
+    border-top-right-radius: 0pt;
 }
 
 .box2 {
@@ -203,6 +232,12 @@ body {
     border-color: var(--border-red);
 }
 
+/* .upperdiv .box:nth-child(1) {
+    border-color: purple;
+  }
+.lower-div .box:nth-child(1) {
+    border-color: purple;
+  }  */
 .box.appear {
     opacity: 1;
     transform: translateY(0);
@@ -330,7 +365,7 @@ body {
 
 /* For scrolling */
 .scroll-container {
-    width: 80vw;
+    /* width: 80vw; */
     height: 90vh;
     overflow-x: auto;
     display: flex;
@@ -351,9 +386,9 @@ body {
 .prev,
 .next {
     position: absolute;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(139 131 131 / 50%);
     color: white;
     padding: 10px;
     border: none;
@@ -414,12 +449,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80vw;
+    width: 100vw;
 }
 
 .carousel-upperdiv {
     width: max-content;
     overflow-x: auto;
+    position: absolute;
+    bottom: 70%;
 }
 
 .carousel-upperdiv::-webkit-scrollbar {
@@ -450,11 +487,11 @@ body {
 }
 
 .scroll-lowerdiv {
-    /* position: relative; */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80vw;
+    width: 100vw;
     overflow: hidden;
     /* Ensure overflow is hidden */
 }
@@ -483,9 +520,12 @@ body {
 }
 
 .carousel-lowerdiv {
+    display: flex;
+    width: 100%;
     overflow-x: auto;
-    width: max-content;
-    position: relative;
+    scroll-behavior: smooth;
+    position: fixed;
+    top: 56%;
 }
 
 .prevlow {
@@ -526,8 +566,8 @@ body {
 
 .prevdown,
 .nextdown {
-    position: absolute;
-    /* bottom: 20%; */
+    position: fixed;
+    bottom: 36%;
     transform: translateY(-6%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -538,9 +578,20 @@ body {
 }
 
 .prevdown {
-    left: 10%;
+    left: 1px;
 }
 
 .nextdown {
-    right: 10%;
+    right: 1px;
+}
+
+
+
+/* Hide Dropwdown */
+#animationBehaviour{
+    display: none;
+}
+
+#animationSelect{
+    display: none;
 }
