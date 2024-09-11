@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&display=swap');
+
 :root {
     --box-clr: radial-gradient(circle, #ffffff 10%, #e5e5e5 100%);
     --border-clr: #3E7FBB;
@@ -44,7 +45,7 @@ body {
     text-align: center;
 }
 
-.last{
+.last {
     font-size: 12.5pt;
 }
 
@@ -63,6 +64,9 @@ body {
     /* height: 90vh; */
     flex-direction: column;
     overflow-x: hidden;
+    overflow-x: hidden;
+    position: relative;
+    top: 12%;
 }
 
 .flex {
@@ -134,9 +138,11 @@ body {
     color: var(--clr-subhead);
     font-weight: 500;
 }
-.box-content .subhead{
+
+.box-content .subhead {
     font-size: 14pt;
 }
+
 .profit-heading {
     font-size: 100pt;
     color: var(--clr-heading);
@@ -149,7 +155,7 @@ body {
     text-align: center;
 }
 
-.days{
+.days {
     font-size: 18pt;
 }
 
@@ -386,6 +392,7 @@ body {
     display: flex;
     gap: 2rem;
     width: max-content;
+    overflow: hidden;
     /* Adjust to fit content */
 }
 
@@ -396,7 +403,7 @@ body {
 .prev,
 .next {
     position: absolute;
-    top: 45%;
+    top: 62%;
     transform: translateY(-50%);
     background-color: rgb(139 131 131 / 50%);
     color: white;
@@ -535,7 +542,7 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     position: fixed;
-    top: 56%;
+    top: 66%;
 }
 
 .prevlow {
@@ -578,7 +585,7 @@ body {
 .prevdown,
 .nextdown {
     position: fixed;
-    bottom: 36%;
+    bottom: 26%;
     transform: translateY(-6%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -599,11 +606,11 @@ body {
 
 
 /* Hide Dropwdown */
-#animationBehaviour{
+#animationBehaviour {
     display: none;
 }
 
-#animationSelect{
+#animationSelect {
     display: none;
 }
 
@@ -611,7 +618,7 @@ body {
 /* popups */
 
 /* main container popup */
-.profit-popup{
+.profit-popup {
     width: 70vw;
     height: 100pt;
     border-radius: 8pt;
@@ -623,7 +630,7 @@ body {
     display: none;
 }
 
-.profit-popup2{
+.profit-popup2 {
     width: 70vw;
     height: 100pt;
     border-radius: 8pt;
@@ -643,19 +650,21 @@ body {
     bottom: 2px;
     font-size: 8pt;
 }
-.popup-data{
+
+.popup-data {
     width: 70%;
 }
-.popup-heading{
+
+.popup-heading {
     font-weight: 500;
     margin-bottom: 1rem;
 }
 
-.popup-content{  
+.popup-content {
     font-size: 10pt;
 }
 
-.graph{
+.graph {
     /* width: 200px;
     height: 200px; */
 }

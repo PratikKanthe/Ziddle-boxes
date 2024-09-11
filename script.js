@@ -216,6 +216,8 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("container");
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
   if (n > slides.length) {
     slideIndex = 1;
   }
