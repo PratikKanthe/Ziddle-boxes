@@ -75,10 +75,10 @@ body {
 }
 
 .upperdiv {
-    transform: rotate(180deg);
+    transform: rotateX(180deg);
     overflow-x: auto;
     /* padding-left: 1rem; */
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
     display: flex;
 }
 
@@ -88,7 +88,8 @@ body {
 
 .lower-div {
     overflow-x: auto;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
+    transform: rotateY(180deg);
     /* padding-right: 1rem; */
 }
 
@@ -167,15 +168,14 @@ body {
 
 .box {
     background: var(--box-clr);
-    min-width: 13vw;
+    min-width: 190px;
     height: 20px;
     opacity: 0;
     transform: translateY(-30px);
-    transition: transform 0.6s ease, opacity 0.6s ease, height 0.4s ease;
+    transition: transform 0.6s ease, opacity 0.6s ease, height 0.5s ease;
     border: 2pt solid transparent;
     position: relative;
 }
-
 
 /* Growing Animation*/
 .box.expand {
@@ -260,9 +260,11 @@ body {
 }
 
 .box-content1 {
-    transform: rotate(180deg);
+    transform: rotateX(180deg);
 }
-
+.lower-div .box-content{
+    transform: rotateY(180deg);
+}
 .box-content {
     padding: 5px;
     font-size: 15px;
@@ -515,7 +517,7 @@ body {
 
 .carousel-upperdiv {
     display: flex;
-    width: 100%;
+    width: 95%;
     /* Make it take full width of its parent */
     overflow-x: auto;
     /* Ensure horizontal scrolling is enabled */
@@ -538,7 +540,7 @@ body {
 
 .carousel-lowerdiv {
     display: flex;
-    width: 100%;
+    width: 95%;
     overflow-x: auto;
     scroll-behavior: smooth;
     position: fixed;

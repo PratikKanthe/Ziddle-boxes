@@ -42,21 +42,32 @@ document.addEventListener("DOMContentLoaded", function () {
   //upper div
   upperdivs.forEach((upperdiv) => {
     const upperdivBoxes = upperdiv.querySelectorAll(".box");
+    let boxcnt = 0;
     upperdivBoxes.forEach((box) => {
+      boxcnt += 1;
       const randomColdColor =
         coldColors[Math.floor(Math.random() * coldColors.length)];
       box.style.borderColor = randomColdColor;
     });
+
+    if (boxcnt > 6) {
+      nextButton.style.display = "block";
+    }
   });
 
   // lower div
   lowerdivs.forEach((lowerdiv) => {
     const lowerdivBoxes = lowerdiv.querySelectorAll(".box");
+    let boxcnt = 0;
     lowerdivBoxes.forEach((box) => {
+      boxcnt += 1;
       const randomWarmColor =
         warmColors[Math.floor(Math.random() * warmColors.length)];
       box.style.borderColor = randomWarmColor;
     });
+    if (boxcnt > 6) {
+      nextDownButton.style.display = "block";
+    }
   });
 });
 
@@ -78,22 +89,63 @@ function resetBoxes() {
   profitDiv.style.opacity = "0";
 }
 
+//for profit div
+// function applyAnimation(animationClass) {
+//   profitDiv.classList.add("appear");
+//   profitDiv.style.opacity = "1"; // Set opacity to 1 when animation starts
+
+//   allBoxes.forEach((box, index) => {
+//     setTimeout(() => {
+//       box.classList.add("appear");
+//       // box.classList.add(animationClass);
+//     }, index * 300);
+//   });
+// }
+
 function applyAnimation(animationClass) {
+  const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
+  const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
+  // Sequence order for appearing
+  const sequence = [3, 2, 4, 5, 1, 6];
+  //random heights
+  const randomHeights = [60, 30, 20];
+
+  // Function to assign random height
+  function assignRandomHeight(box, isThirdBox) {
+    if (isThirdBox) {
+      box.style.height = "90px"; // Set height to 90px for 3rd box
+    } else {
+      const randomHeight =
+        randomHeights[Math.floor(Math.random() * randomHeights.length)];
+      box.style.height = `${randomHeight}px`; // Assign random height to other boxes
+    }
+  }
+
+  // Animate upper div boxes in sequence
+  sequence.forEach((order, index) => {
+    setTimeout(() => {
+      const isThirdBox = order === 3;
+      assignRandomHeight(upperDivBoxes[order - 1], isThirdBox);
+      upperDivBoxes[order - 1].classList.add("appear", animationClass);
+    }, index * 300);
+  });
+
+  // Animate lower div boxes in sequence
+  sequence.forEach((order, index) => {
+    setTimeout(() => {
+      const isThirdBox = order === 3; // Check if it's the 3rd box
+      assignRandomHeight(lowerDivBoxes[order - 1], isThirdBox);
+      lowerDivBoxes[order - 1].classList.add("appear", animationClass);
+    }, index * 300);
+  });
+
+  // for profit div
   profitDiv.classList.add("appear");
-  profitDiv.style.opacity = "1"; // Set opacity to 1 when animation starts
-  let boxcnt = 0;
+  profitDiv.style.opacity = "1";
   allBoxes.forEach((box, index) => {
-    boxcnt += 1;
     setTimeout(() => {
       box.classList.add("appear");
-      box.classList.add(animationClass);
     }, index * 300);
-    if (boxcnt > 5) {
-      prevButton.style.display = "block";
-    }
-    if (boxcnt > 5) {
-      nextDownButton.style.display = "block";
-    }
   });
 }
 
@@ -216,8 +268,8 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("container");
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
   if (n > slides.length) {
     slideIndex = 1;
   }
@@ -238,14 +290,14 @@ function plusSlidesUpper(n) {
   const carousel = document.querySelector(".upperdiv");
   if (n === 1) {
     // Slide to the next box
+    prevButton.style.display = "block";
     carousel.scrollBy({
-      left: -slightScrollAmount,
+      left: slightScrollAmount,
       behavior: "smooth",
     });
   } else if (n === -1) {
-    nextButton.style.display = "block";
     carousel.scrollBy({
-      left: slightScrollAmount,
+      left: -slightScrollAmount,
       behavior: "smooth",
     });
   }
