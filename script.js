@@ -301,41 +301,51 @@ function plusSlidesUpper(n) {
   }
 }
 
-document
-  .querySelector(".prevup")
-  .addEventListener("click", () => plusSlidesUpper(-1));
-document
-  .querySelector(".nextup")
-  .addEventListener("click", () => plusSlidesUpper(1));
-
 // Lower div carousel buttons
 const slideAmount1 = document.querySelector(".box").offsetWidth;
 const slightScrollAmount1 = slideAmount1 / 2;
+let lowerScrollposition = 0;
+$(".lower-div").scrollLeft(0);
 
-function plusSlidesLower(n) {
-  const carousel = document.querySelector(".lower-div");
-
+function plusSlidesLower(n, obj) {
+  const carousel = $(obj).siblings(".lower-div");
+  var lowerScrollpositionOriginal = lowerScrollposition;
+  var originalPosition = $(carousel).scrollLeft();
+  // alert("Hello:" + $(carousel).html());
   if (n === 1) {
     // Slide to the next box
-    prevDownButton.style.display = "block";
-    carousel.scrollBy({
-      left: slightScrollAmount1,
-      behavior: "smooth",
-    });
-  } else if (n === -1) {
-    carousel.scrollBy({
-      left: -slightScrollAmount1,
-      behavior: "smooth",
-    });
-  }
-}
 
-document
-  .querySelector(".prevdown")
-  .addEventListener("click", () => plusSlidesLower(-1));
-document
-  .querySelector(".nextdown")
-  .addEventListener("click", () => plusSlidesLower(1));
+    // carousel.scrollBy({
+    //   left: slightScrollAmount1,
+    //   behavior: "smooth",
+    // });
+    lowerScrollposition = lowerScrollposition - slightScrollAmount1;
+    //alert(lowerScrollposition);
+    $(carousel).scrollLeft(originalPosition + slightScrollAmount1);
+  } else if (n === -1) {
+    prevDownButton.style.display = "block";
+    // carousel.scrollBy({
+    //   left: -slightScrollAmount1,
+    //   behavior: "smooth",
+    // });
+    lowerScrollposition = lowerScrollposition + slightScrollAmount1;
+    if (lowerScrollposition < 0) {
+      lowerScrollposition = Math.abs(lowerScrollposition);
+    }
+    alert(originalPosition - slightScrollAmount1);
+    $(carousel).scrollLeft(-originalPosition - slightScrollAmount1);
+  }
+
+  // alert(slightScrollAmount1);
+  var latestPosition = $(carousel).scrollLeft();
+  if (latestPosition == originalPosition) {
+    lowerScrollposition = lowerScrollpositionOriginal;
+    alert(
+      "No Scroll " + lowerScrollposition + ": " + lowerScrollpositionOriginal
+    );
+  }
+  // alert(originalPosition + ": " + latestPosition);
+}
 
 const knowLinks = document.querySelectorAll(".know-click");
 
