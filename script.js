@@ -338,13 +338,14 @@ document
 
 const knowLinks = document.querySelectorAll(".know-click");
 
+const profitData = document.querySelector(".profit-data");
+const profitText = document.querySelector(".profit-text");
+const profitPopup = document.querySelector(".popup");
+
 knowLinks.forEach((knowLink) => {
   knowLink.addEventListener("click", function (event) {
     event.stopPropagation();
 
-    const profitData = document.querySelector(".profit-data");
-    const profitText = document.querySelector(".profit-text");
-    const profitPopup = document.querySelector(".profit-popup");
     if (profitPopup && profitPopup.style.display === "flex") {
       profitPopup.style.display = "none";
       if (profitData) profitData.style.display = "flex";
@@ -357,17 +358,13 @@ knowLinks.forEach((knowLink) => {
   });
 });
 
-const readbtn = document.querySelectorAll(".read-btn");
+const popubback = document.querySelectorAll(".popup-back");
 
-readbtn.forEach((readbtns) => {
-  readbtns.addEventListener("click", function (event) {
-    event.stopPropagation();
-    const profitPopup2 = document.querySelector(".profit-popup");
-    if (profitPopup2 && profitPopup.style.display === "flex") {
-      profitPopup2.style.display = "none";
-    } else {
-      if (profitPopup2) profitPopup2.style.display = "flex";
-    }
+popubback.forEach((back) => {
+  back.addEventListener("click", function (event) {
+    profitPopup.style.display = "none";
+    if (profitData) profitData.style.display = "flex";
+    if (profitText) profitText.style.display = "flex";
   });
 });
 

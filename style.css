@@ -636,11 +636,10 @@ body {
 
 
 /* popups */
-
 /* main container popup */
-.profit-popup {
-    width: 70vw;
-    height: 100pt;
+.popup {
+    width: 50vw;
+    height: 240pt;
     border-radius: 8pt;
     border: var(--border-cold2) 2pt solid;
     position: relative;
@@ -648,6 +647,11 @@ body {
     justify-content: center;
     align-items: center;
     display: none;
+    background: var(--box-clr);
+    position: fixed;
+    bottom: 10%;
+    left: 20%;
+    z-index: 100;
 }
 
 .profit-popup2 {
