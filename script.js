@@ -169,19 +169,19 @@ function handleBoxClick(event) {
   }
 }
 
-function handleMouseEnter(event) {
-  const box = event.currentTarget;
-  box.classList.add("grow"); // Apply grow class on hover
-  const content = box.querySelector(".box-content");
+// function handleMouseEnter(event) {
+//   const box = event.currentTarget;
+//   box.classList.add("grow"); // Apply grow class on hover
+//   const content = box.querySelector(".box-content");
 
-  if (content.style.display === "none" || content.style.display === "") {
-    setTimeout(() => {
-      content.style.display = "flex";
-    }, 500); // Add content after 0.5 sec
-  } else {
-    // content.style.display = "none";
-  }
-}
+//   if (content.style.display === "none" || content.style.display === "") {
+//     setTimeout(() => {
+//       content.style.display = "flex";
+//     }, 500); // Add content after 0.5 sec
+//   } else {
+//     // content.style.display = "none";
+//   }
+// }
 
 function handleMouseLeave(event) {
   // const box = event.currentTarget;
@@ -277,6 +277,7 @@ function showSlides(n) {
     slides[i].style.display = "none";
   }
   slides[slideIndex - 1].style.display = "flex";
+  // applyAnimation("appear");
 }
 
 // Upper div carousel buttons
