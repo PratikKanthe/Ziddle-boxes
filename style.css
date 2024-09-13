@@ -634,7 +634,11 @@ body {
     display: none;
 }
 
-
+/* .overlay{
+    z-index: 50;
+    position: absolute;
+    height: 100%;
+} */
 /* popups */
 /* main container popup */
 .popup {
