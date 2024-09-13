@@ -190,7 +190,6 @@ function handleMouseLeave(event) {
   // content.style.display = "none";
 }
 
-// Add click listener initially for default behavior
 boxes.forEach((box) => {
   box.addEventListener("click", handleBoxClick);
 });
@@ -241,7 +240,7 @@ behaviorSelect.addEventListener("change", () => {
       // Grow on hover
       box.addEventListener("mouseenter", handleMouseEnter);
       box.addEventListener("mouseleave", handleMouseLeave);
-      box.removeEventListener("click", handleBoxClick); // Remove click listener
+      box.removeEventListener("click", handleBoxClick);
     } else if (selectedBehavior === "onclick") {
       // Grow on click
       box.removeEventListener("mouseenter", handleMouseEnter);
@@ -251,7 +250,6 @@ behaviorSelect.addEventListener("change", () => {
   });
 });
 
-// Carousel functionality
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -260,7 +258,6 @@ function plusSlides(n) {
   showSlides((slideIndex += n));
 }
 
-// Thumbnail image controls
 function currentSlide(n) {
   showSlides((slideIndex = n));
 }
@@ -362,15 +359,31 @@ knowLinks.forEach((knowLink) => {
 
 const readbtn = document.querySelectorAll(".read-btn");
 
-knowLinks.forEach((knowLink) => {
-  readbtn.addEventListener("click", function (event) {
+readbtn.forEach((readbtns) => {
+  readbtns.addEventListener("click", function (event) {
     event.stopPropagation();
-    alert("clicked");
     const profitPopup2 = document.querySelector(".profit-popup");
     if (profitPopup2 && profitPopup.style.display === "flex") {
       profitPopup2.style.display = "none";
     } else {
       if (profitPopup2) profitPopup2.style.display = "flex";
     }
+  });
+});
+
+//show message to grow box
+document.addEventListener("DOMContentLoaded", function () {
+  const showMessage = document.querySelector(".showmesg");
+
+  let messageTimeout = setTimeout(function () {
+    showMessage.classList.add("show");
+  }, 5000);
+
+  let boxes = document.querySelectorAll(".box");
+  boxes.forEach(function (box) {
+    box.addEventListener("click", function () {
+      clearTimeout(messageTimeout);
+      showMessage.classList.remove("show");
+    });
   });
 });
