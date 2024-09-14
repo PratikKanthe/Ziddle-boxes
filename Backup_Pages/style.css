@@ -80,7 +80,6 @@ body {
     /* padding-left: 1rem; */
     /* padding-right: 1rem; */
     display: flex;
-    padding-bottom: 2rem;
 }
 
 .upperdiv::-webkit-scrollbar {
@@ -170,23 +169,21 @@ body {
     padding-right: 2rem;
     /* display: none; */
 }
-
 .showmesg {
     position: absolute;
-    bottom: -20%;
-    left: 26.5%;
+    top: 32%;
+    left: 38.5%;
     font-size: 9pt;
     display: block;
     opacity: 0;
-    transform: translateY(-5px)rotateX(180deg);
+    transform: translateY(20px);
     transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .showmesg.show {
     opacity: 1;
-    transform: translateY(0) rotateX(180deg);
+    transform: translateY(0);
 }
-
 .box {
     background: var(--box-clr);
     min-width: 190px;
@@ -196,7 +193,6 @@ body {
     transition: transform 0.6s ease, opacity 0.6s ease, height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     border: 2pt solid transparent;
     position: relative;
-    cursor: pointer;
 }
 
 /* Growing Animation*/
@@ -506,10 +502,9 @@ body {
 
 .prevup,
 .nextup {
-    position: fixed;
+    position: absolute;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
-    bottom: 33%;
     color: white;
     padding: 10px;
     border: none;
@@ -588,9 +583,8 @@ body {
 
 .prevup,
 .nextup {
-    position: fixed;
+    position: absolute;
     /* top: 20%; */
-    bottom: 55%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;

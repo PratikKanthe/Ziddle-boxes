@@ -37,35 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
     "var(--border-cold4)",
   ];
 
-  const randomHeights = [60, 30, 20]; // Random heights
-
   const upperdivs = document.querySelectorAll(".upperdiv");
   const lowerdivs = document.querySelectorAll(".lower-div");
-
-  // Function to assign random height
-  function assignRandomHeight(box, isThirdBox) {
-    if (isThirdBox) {
-      box.style.height = "90px"; // Set height to 90px for 3rd box
-    } else {
-      const randomHeight =
-        randomHeights[Math.floor(Math.random() * randomHeights.length)];
-      box.style.height = `${randomHeight}px`; // Assign random height to other boxes
-    }
-  }
-
-  // Upper div boxes with random heights and cold border colors
+  //upper div
   upperdivs.forEach((upperdiv) => {
     const upperdivBoxes = upperdiv.querySelectorAll(".box");
     let boxcnt = 0;
-    upperdivBoxes.forEach((box, index) => {
+    upperdivBoxes.forEach((box) => {
       boxcnt += 1;
       const randomColdColor =
         coldColors[Math.floor(Math.random() * coldColors.length)];
       box.style.borderColor = randomColdColor;
-
-      // Assign random height to each box, 3rd box gets 90px
-      const isThirdBox = index === 2; // 3rd box (index 2)
-      assignRandomHeight(box, isThirdBox);
     });
 
     if (boxcnt > 6) {
@@ -73,31 +55,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Lower div boxes with random heights and warm border colors
+  // lower div
   lowerdivs.forEach((lowerdiv) => {
     const lowerdivBoxes = lowerdiv.querySelectorAll(".box");
     let boxcnt = 0;
-    lowerdivBoxes.forEach((box, index) => {
+    lowerdivBoxes.forEach((box) => {
       boxcnt += 1;
       const randomWarmColor =
         warmColors[Math.floor(Math.random() * warmColors.length)];
       box.style.borderColor = randomWarmColor;
-
-      // Assign random height to each box, 3rd box gets 90px
-      const isThirdBox = index === 2; // 3rd box (index 2)
-      assignRandomHeight(box, isThirdBox);
     });
-
     if (boxcnt > 6) {
       nextDownButton.style.display = "block";
     }
   });
 });
 
-
 function resetBoxes() {
   allBoxes.forEach((box) => {
-    box.style.height = box.dataset.initialHeight || "20px"; // Use stored height or default to 20px if not available
+    box.style.height = "20px"; // Default Height
     box.classList.remove(
       "appear",
       "bounce",
@@ -126,29 +102,24 @@ function resetBoxes() {
 //   });
 // }
 
-//random heights
-const randomHeights = [60, 30, 20];
-
-// Function to assign random height
-function assignRandomHeight(box, isThirdBox) {
-  let height;
-  if (isThirdBox) {
-    height = "90px"; // Set height to 90px for 3rd box
-  } else {
-    const randomHeight =
-      randomHeights[Math.floor(Math.random() * randomHeights.length)];
-    height = `${randomHeight}px`; // Assign random height to other boxes
-  }
-  box.style.height = height;
-  box.dataset.initialHeight = height; // Store the height in a data attribute
-}
-
 function applyAnimation(animationClass) {
   const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
   const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
   // Sequence order for appearing
   const sequence = [3, 2, 4, 5, 1, 6];
+  //random heights
+  const randomHeights = [60, 30, 20];
 
+  // Function to assign random height
+  function assignRandomHeight(box, isThirdBox) {
+    if (isThirdBox) {
+      box.style.height = "90px"; // Set height to 90px for 3rd box
+    } else {
+      const randomHeight =
+        randomHeights[Math.floor(Math.random() * randomHeights.length)];
+      box.style.height = `${randomHeight}px`; // Assign random height to other boxes
+    }
+  }
 
   // Animate upper div boxes in sequence
   sequence.forEach((order, index) => {
@@ -194,7 +165,7 @@ function handleBoxClick(event) {
     box.style.height = "210px"; // Expand height to 210px
   } else {
     content.style.display = "none";
-    box.style.height = box.dataset.initialHeight; // Reset to the initially assigned height
+    box.style.height = "20px"; // Reset height to 20px
   }
 }
 
@@ -310,104 +281,71 @@ function showSlides(n) {
 }
 
 // Upper div carousel buttons
-const boxUpper = document.querySelector(".box");
-const boxUpperWidth = boxUpper ? boxUpper.offsetWidth : 0;
-const scrollAmountUpper = boxUpperWidth + 10;
-let upperScrollPosition = 0;
+const slideAmount = document.querySelector(".box").offsetWidth;
+const slightScrollAmount = slideAmount / 2;
 
-function updateButtonVisibility() {
+function plusSlidesUpper(n) {
   const carousel = document.querySelector(".upperdiv");
-  const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-
-  // Show or hide prevup button
-  const prevUpButton = document.querySelector(".prevup");
-  if (carousel.scrollLeft > 0) {
-    prevUpButton.style.display = "block";
-  } else {
-    prevUpButton.style.display = "none";
-  }
-
-  // Show or hide nextup button
-  const nextUpButton = document.querySelector(".nextup");
-  if (carousel.scrollLeft < maxScrollLeft) {
-    nextUpButton.style.display = "block";
-  } else {
-    nextUpButton.style.display = "none";
-  }
-}
-
-function plusSlidesUpper(n, obj) {
-  const carousel = $(obj).siblings(".upperdiv");
-  const originalPosition = $(carousel).scrollLeft(); // Current scroll position
-
   if (n === 1) {
-    // Scroll to the right (next boxes)
-    upperScrollPosition = originalPosition + scrollAmountUpper;
-    $(carousel).animate({ scrollLeft: upperScrollPosition }, 500, function () {
-      updateButtonVisibility();
+    // Slide to the next box
+    prevButton.style.display = "block";
+    carousel.scrollBy({
+      left: slightScrollAmount,
+      behavior: "smooth",
     });
   } else if (n === -1) {
-    // Scroll to the left (previous boxes)
-    upperScrollPosition = originalPosition - scrollAmountUpper;
-    $(carousel).animate({ scrollLeft: upperScrollPosition }, 500, function () {
-      updateButtonVisibility();
+    carousel.scrollBy({
+      left: -slightScrollAmount,
+      behavior: "smooth",
     });
   }
 }
 
-// Initialize button visibility on page load
-document.addEventListener("DOMContentLoaded", updateButtonVisibility);
-
-
-
-const box = document.querySelector(".box");
-const boxWidth = box.offsetWidth;
-const scrollAmount = boxWidth + 10;
-let lowerScrollPosition = 0;
-
-function updateButtonDownVisibility() {
-  const carouseldown = document.querySelector(".lower-div");
-  const maxScrollLeftDown = carouseldown.scrollWidth - carouseldown.clientWidth;
-
-  // Show or hide prevup button
-  const prevDownButton = document.querySelector(".prevdown");
-  if (carouseldown.scrollLeft > 0) {
-    prevDownButton.style.display = "block";
-  } else {
-    prevDownButton.style.display = "none";
-  }
-
-  // Show or hide nextup button
-  const nextDownButton = document.querySelector(".nextdown");
-  if (carouseldown.scrollLeft < maxScrollLeftDown) {
-    nextDownButton.style.display = "block";
-  } else {
-    nextDownButton.style.display = "none";
-  }
-}
+// Lower div carousel buttons
+const slideAmount1 = document.querySelector(".box").offsetWidth;
+const slightScrollAmount1 = slideAmount1 / 2;
+let lowerScrollposition = 0;
+$(".lower-div").scrollLeft(0);
 
 function plusSlidesLower(n, obj) {
   const carousel = $(obj).siblings(".lower-div");
-  const originalPosition = $(carousel).scrollLeft(); // Current scroll position
-
+  var lowerScrollpositionOriginal = lowerScrollposition;
+  var originalPosition = $(carousel).scrollLeft();
+  // alert("Hello:" + $(carousel).html());
   if (n === 1) {
-    // Scroll to the right (next boxes)
-    lowerScrollPosition = originalPosition - scrollAmount;
-    // $(carousel).animate({ scrollLeft: lowerScrollPosition }, 500); // Smooth scroll
-    $(carousel).animate({ scrollLeft: lowerScrollPosition }, 500, function () {
-      updateButtonDownVisibility();
-    });
+    // Slide to the next box
+
+    // carousel.scrollBy({
+    //   left: slightScrollAmount1,
+    //   behavior: "smooth",
+    // });
+    lowerScrollposition = lowerScrollposition - slightScrollAmount1;
+    //alert(lowerScrollposition);
+    $(carousel).scrollLeft(originalPosition + slightScrollAmount1);
   } else if (n === -1) {
-    // Scroll to the left (previous boxes)
     prevDownButton.style.display = "block";
-    lowerScrollPosition = originalPosition + scrollAmount;
-    // $(carousel).animate({ scrollLeft: lowerScrollPosition }, 500); // Smooth scroll
-    $(carousel).animate({ scrollLeft: lowerScrollPosition }, 500, function () {
-      updateButtonDownVisibility();
-    });
+    // carousel.scrollBy({
+    //   left: -slightScrollAmount1,
+    //   behavior: "smooth",
+    // });
+    lowerScrollposition = lowerScrollposition + slightScrollAmount1;
+    if (lowerScrollposition < 0) {
+      lowerScrollposition = Math.abs(lowerScrollposition);
+    }
+    alert(originalPosition - slightScrollAmount1);
+    $(carousel).scrollLeft(-originalPosition - slightScrollAmount1);
   }
+
+  // alert(slightScrollAmount1);
+  var latestPosition = $(carousel).scrollLeft();
+  if (latestPosition == originalPosition) {
+    lowerScrollposition = lowerScrollpositionOriginal;
+    alert(
+      "No Scroll " + lowerScrollposition + ": " + lowerScrollpositionOriginal
+    );
+  }
+  // alert(originalPosition + ": " + latestPosition);
 }
-document.addEventListener("DOMContentLoaded", updateButtonDownVisibility);
 
 const knowLinks = document.querySelectorAll(".know-click");
 
