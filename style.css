@@ -660,8 +660,8 @@ body {
 /* popups */
 /* main container popup */
 .popup {
-    width: 50vw;
-    height: 240pt;
+    width: 80vw;
+    height: 100pt;
     border-radius: 8pt;
     border: var(--border-cold2) 2pt solid;
     position: relative;
@@ -671,8 +671,8 @@ body {
     display: none;
     background: var(--box-clr);
     position: fixed;
-    bottom: 10%;
-    left: 20%;
+    bottom: 35%;
+    left: 10%;
     z-index: 100;
 }
 
