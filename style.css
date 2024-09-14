@@ -80,7 +80,7 @@ body {
     /* padding-left: 1rem; */
     /* padding-right: 1rem; */
     display: flex;
-    padding-bottom: 2rem;
+    height: 240px;
 }
 
 .upperdiv::-webkit-scrollbar {
@@ -89,8 +89,13 @@ body {
 
 .lower-div {
     overflow-x: auto;
+    height: 240px;
     /* padding-left: 1rem; */
     /* padding-right: 1rem; */
+}
+
+.lower-div .box-content1{
+    transform: rotate(0deg);
 }
 
 .lower-div::-webkit-scrollbar {
@@ -109,7 +114,7 @@ body {
     transition: transform 0.6s ease, opacity 0.6s ease;
     background: var(--box-clr);
     position: relative;
-    z-index: 1;
+    z-index: 1; 
 }
 
 .profit.appear {
@@ -184,6 +189,24 @@ body {
     cursor: pointer;
 }
 
+@keyframes bounceHeight {
+    0% {
+      height: var(--initial-height);
+    }
+    50% {
+      height: var(--grow-height);
+    }
+    100% {
+      height: var(--initial-height);
+    }
+  }
+  
+  .box.bounce-animation {
+    animation: bounceHeight 1s infinite alternate cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* Randomness in timing */
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* Smooth easing */
+  }
+  
 /* Growing Animation*/
 .box.expand {
     /* animation: grow 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; */
@@ -552,7 +575,7 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     position: fixed;
-    top: 66%;
+    top: 66.8%;
 }
 
 .prevlow {

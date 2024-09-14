@@ -37,21 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
     "var(--border-cold4)",
   ];
 
-  const randomHeights = [60, 30, 20]; // Random heights
+  // const randomHeights = [60, 30, 20]; // Random heights
 
   const upperdivs = document.querySelectorAll(".upperdiv");
   const lowerdivs = document.querySelectorAll(".lower-div");
 
-  // Function to assign random height
-  function assignRandomHeight(box, isThirdBox) {
-    if (isThirdBox) {
-      box.style.height = "90px"; // Set height to 90px for 3rd box
-    } else {
-      const randomHeight =
-        randomHeights[Math.floor(Math.random() * randomHeights.length)];
-      box.style.height = `${randomHeight}px`; // Assign random height to other boxes
-    }
-  }
+  // // Function to assign random height
+  // function assignRandomHeight(box, isThirdBox) {
+  //   if (isThirdBox) {
+  //     box.style.height = "90px"; // Set height to 90px for 3rd box
+  //   } else {
+  //     const randomHeight =
+  //       randomHeights[Math.floor(Math.random() * randomHeights.length)];
+  //     box.style.height = `${randomHeight}px`; // Assign random height to other boxes
+  //   }
+  // }
 
   // Upper div boxes with random heights and cold border colors
   upperdivs.forEach((upperdiv) => {
@@ -125,21 +125,58 @@ function resetBoxes() {
 //   });
 // }
 
-//random heights
-const randomHeights = [60, 30, 20];
+const randomHeights = [25, 20, 15, 10, 8]; // before clicked in px
+const randomGrowHeights = [200, 160, 120, 80, 40]; // after clicked in px
 
 // Function to assign random height
 function assignRandomHeight(box, isThirdBox) {
   let height;
   if (isThirdBox) {
-    height = "90px"; // Set height to 90px for 3rd box
+    height = "30px"; // Set height to 30px for 3rd box before clicked
   } else {
-    const randomHeight =
-      randomHeights[Math.floor(Math.random() * randomHeights.length)];
+    const randomIndex = Math.floor(Math.random() * randomHeights.length);
+    const randomHeight = randomHeights[randomIndex];
     height = `${randomHeight}px`; // Assign random height to other boxes
+
+    // Store both initial height and corresponding grow height in data attributes
+    box.dataset.initialHeight = height;
+    box.dataset.growHeight = `${randomGrowHeights[randomIndex]}px`;
   }
   box.style.height = height;
-  box.dataset.initialHeight = height; // Store the height in a data attribute
+}
+
+function handleBoxClick(event) {
+  const box = event.currentTarget;
+  const content = box.querySelector(".box-content");
+
+  // Prevent box from growing if opacity is 0
+  if (window.getComputedStyle(box).opacity === "0") {
+    return;
+  }
+
+  // Remove bounce animation class on click
+  box.classList.remove("bounce-animation");
+
+  const isThirdBox = box.classList.contains("third-box");
+
+  if (content.style.display === "none" || content.style.display === "") {
+    setTimeout(() => {
+      content.style.display = "flex";
+    }, 500); // Add content after 0.5 sec
+
+    if (isThirdBox) {
+      box.style.height = "220px"; // Expand height to 220px for 3rd box
+    } else {
+      // Use the grow height stored in the data attribute
+      box.style.height = box.dataset.growHeight;
+    }
+  } else {
+    content.style.display = "none";
+    if (isThirdBox) {
+      box.style.height = "30px"; // Collapse height to 30px for 3rd
+    }
+    box.style.height = box.dataset.initialHeight; // Reset to the initially assigned height
+  }
 }
 
 function applyAnimation(animationClass) {
@@ -174,27 +211,47 @@ function applyAnimation(animationClass) {
       box.classList.add("appear");
     }, index * 300);
   });
+
+  // Once all animations are done, trigger the bounce animation
+  setTimeout(() => {
+    applyBounceAnimation();
+  }, sequence.length * 300 + 500);
 }
 
-function handleBoxClick(event) {
-  const box = event.currentTarget;
-  const content = box.querySelector(".box-content");
+function applyBounceAnimation() {
+  const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
+  const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
+  const thirdBox = document.querySelector(".thirdBox");
 
-  // Prevent box from growing if opacity is 0
-  if (window.getComputedStyle(box).opacity === "0") {
-    return;
+  function setBounceHeight(box, index) {
+    const initialHeight = box.offsetHeight;
+    const growHeight = initialHeight + 10;
+
+    // Set heights as custom properties
+    box.style.setProperty("--initial-height", `${initialHeight}px`);
+    box.style.setProperty("--grow-height", `${growHeight}px`);
+
+    // Generate a random delay for each box
+    const randomDelay = Math.random() * 2; // Random delay between 0 and 2 seconds
+    box.style.animationDelay = `${randomDelay}s`;
+
+    // Add the bounce animation class
+    box.classList.add("bounce-animation");
   }
 
-  if (content.style.display === "none" || content.style.display === "") {
-    setTimeout(() => {
-      content.style.display = "flex";
-    }, 500); // Add content after 0.5 sec
-    box.style.height = "210px"; // Expand height to 210px
-  } else {
-    content.style.display = "none";
-    box.style.height = box.dataset.initialHeight; // Reset to the initially assigned height
+  // Apply to upper and lower div boxes with random delays
+  upperDivBoxes.forEach(setBounceHeight);
+  lowerDivBoxes.forEach(setBounceHeight);
+
+  if (thirdBox) {
+    setBounceHeight(thirdBox);
   }
 }
+
+// Stop all animations when a box is clicked
+document.querySelectorAll(".box").forEach((box) => {
+  box.addEventListener("click", handleBoxClick);
+});
 
 // function handleMouseEnter(event) {
 //   const box = event.currentTarget;
