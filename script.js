@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 function resetBoxes() {
   allBoxes.forEach((box) => {
     box.style.height = box.dataset.initialHeight || "20px"; // Use stored height or default to 20px if not available
@@ -148,7 +147,6 @@ function applyAnimation(animationClass) {
   const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
   // Sequence order for appearing
   const sequence = [3, 2, 4, 5, 1, 6];
-
 
   // Animate upper div boxes in sequence
   sequence.forEach((order, index) => {
@@ -358,8 +356,6 @@ function plusSlidesUpper(n, obj) {
 // Initialize button visibility on page load
 document.addEventListener("DOMContentLoaded", updateButtonVisibility);
 
-
-
 const box = document.querySelector(".box");
 const boxWidth = box.offsetWidth;
 const scrollAmount = boxWidth + 10;
@@ -442,18 +438,18 @@ popubback.forEach((back) => {
 });
 
 //show message to grow box
-document.addEventListener("DOMContentLoaded", function () {
-  const showMessage = document.querySelector(".showmesg");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const showMessage = document.querySelector(".showmesg");
 
-  let messageTimeout = setTimeout(function () {
-    showMessage.classList.add("show");
-  }, 5000);
+//   let messageTimeout = setTimeout(function () {
+//     showMessage.classList.add("show");
+//   }, 5000);
 
-  let boxes = document.querySelectorAll(".box");
-  boxes.forEach(function (box) {
-    box.addEventListener("click", function () {
-      clearTimeout(messageTimeout);
-      showMessage.classList.remove("show");
-    });
-  });
-});
+//   let boxes = document.querySelectorAll(".box");
+//   boxes.forEach(function (box) {
+//     box.addEventListener("click", function () {
+//       clearTimeout(messageTimeout);
+//       showMessage.classList.remove("show");
+//     });
+//   });
+// });
