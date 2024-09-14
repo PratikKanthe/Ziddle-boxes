@@ -676,6 +676,16 @@ body {
     z-index: 100;
 }
 
+.popup-grow{
+    height: 280pt;
+    bottom: 2%;
+}
+
+#more{
+    font-size: 8pt;
+    cursor: pointer;
+}
+
 .profit-popup2 {
     width: 70vw;
     height: 100pt;

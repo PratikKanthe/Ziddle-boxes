@@ -153,7 +153,6 @@ function handleBoxClick(event) {
   if (window.getComputedStyle(box).opacity === "0") {
     return;
   }
-
   // Remove bounce animation class on click
   box.classList.remove("bounce-animation");
 
@@ -494,19 +493,12 @@ popubback.forEach((back) => {
   });
 });
 
-//show message to grow box
-// document.addEventListener("DOMContentLoaded", function () {
-//   const showMessage = document.querySelector(".showmesg");
+//grow popup
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.querySelector(".popup");
+  const more = document.getElementById("more");
 
-//   let messageTimeout = setTimeout(function () {
-//     showMessage.classList.add("show");
-//   }, 5000);
-
-//   let boxes = document.querySelectorAll(".box");
-//   boxes.forEach(function (box) {
-//     box.addEventListener("click", function () {
-//       clearTimeout(messageTimeout);
-//       showMessage.classList.remove("show");
-//     });
-//   });
-// });
+  more.addEventListener("click", function () {
+    popup.classList.add("popup-grow");
+  });
+});
