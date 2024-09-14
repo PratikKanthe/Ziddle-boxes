@@ -588,6 +588,10 @@ body {
     display: none;
 }
 
+.know{
+    text-align: right;
+}
+
 .know a {
     text-decoration: none;
     color: var(--clr-link);
