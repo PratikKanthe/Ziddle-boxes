@@ -67,10 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const isThirdBox = index === 2; // 3rd box (index 2)
       assignRandomHeight(box, isThirdBox);
     });
-
-    if (boxcnt > 6) {
-      nextButton.style.display = "block";
-    }
   });
 
   // Lower div boxes with random heights and warm border colors
@@ -87,10 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const isThirdBox = index === 2; // 3rd box (index 2)
       assignRandomHeight(box, isThirdBox);
     });
-
-    if (boxcnt > 6) {
-      nextDownButton.style.display = "block";
-    }
   });
 });
 
@@ -211,41 +203,48 @@ function applyAnimation(animationClass) {
     }, index * 300);
   });
 
-  // Once all animations are done, trigger the bounce animation
+  // Once all animations are done, trigger the addGrowAnimation animation
   setTimeout(() => {
-    applyBounceAnimation();
+    addGrowAnimation();
   }, sequence.length * 300 + 500);
 }
 
-function applyBounceAnimation() {
-  const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
-  const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
-  const thirdBox = document.querySelector(".thirdBox");
-
-  function setBounceHeight(box, index) {
-    const initialHeight = box.offsetHeight;
-    const growHeight = initialHeight + 10;
-
-    // Set heights as custom properties
-    box.style.setProperty("--initial-height", `${initialHeight}px`);
-    box.style.setProperty("--grow-height", `${growHeight}px`);
-
-    // Generate a random delay for each box
-    const randomDelay = Math.random() * 2; // Random delay between 0 and 2 seconds
-    box.style.animationDelay = `${randomDelay}s`;
-
-    // Add the bounce animation class
-    box.classList.add("bounce-animation");
-  }
-
-  // Apply to upper and lower div boxes with random delays
-  upperDivBoxes.forEach(setBounceHeight);
-  lowerDivBoxes.forEach(setBounceHeight);
-
+function addGrowAnimation() {
+  const thirdBox = document.querySelector(".upperdiv .box:nth-child(3)");
   if (thirdBox) {
-    setBounceHeight(thirdBox);
+    thirdBox.classList.add("growbox");
   }
 }
+
+// function applyBounceAnimation() {
+//   const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
+//   const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
+//   const thirdBox = document.querySelector(".thirdBox");
+
+//   function setBounceHeight(box, index) {
+//     const initialHeight = box.offsetHeight;
+//     const growHeight = initialHeight + 10;
+
+//     // Set heights as custom properties
+//     box.style.setProperty("--initial-height", `${initialHeight}px`);
+//     box.style.setProperty("--grow-height", `${growHeight}px`);
+
+//     // Generate a random delay for each box
+//     const randomDelay = Math.random() * 2; // Random delay between 0 and 2 seconds
+//     box.style.animationDelay = `${randomDelay}s`;
+
+//     // Add the bounce animation class
+//     box.classList.add("bounce-animation");
+//   }
+
+//   // Apply to upper and lower div boxes with random delays
+//   upperDivBoxes.forEach(setBounceHeight);
+//   lowerDivBoxes.forEach(setBounceHeight);
+
+//   if (thirdBox) {
+//     setBounceHeight(thirdBox);
+//   }
+// }
 
 // Stop all animations when a box is clicked
 document.querySelectorAll(".box").forEach((box) => {
@@ -461,44 +460,171 @@ function plusSlidesLower(n, obj) {
 }
 document.addEventListener("DOMContentLoaded", updateButtonDownVisibility);
 
-const knowLinks = document.querySelectorAll(".know-click");
+document.addEventListener("DOMContentLoaded", function () {
+  const knowLinks = document.querySelectorAll(".know-click");
+  const profitPopup = document.querySelector(".popup");
+  const moreBtnInPopup = document.getElementById("more");
 
-const profitData = document.querySelector(".profit-data");
-const profitText = document.querySelector(".profit-text");
-const profitPopup = document.querySelector(".popup");
+  let activeBox = null; // Track the currently active box
+  let isPopupOpen = false; // Track popup state
 
-knowLinks.forEach((knowLink) => {
-  knowLink.addEventListener("click", function (event) {
-    event.stopPropagation();
+  function closePopup() {
+    profitPopup.style.display = "none";
+    isPopupOpen = false;
+    activeBox = null;
+    // Restore event listeners for all "More..." links
+    knowLinks.forEach((link) => {
+      link.style.pointerEvents = "auto"; // Make them clickable again
+    });
+  }
 
-    if (profitPopup && profitPopup.style.display === "flex") {
-      profitPopup.style.display = "none";
-      if (profitData) profitData.style.display = "flex";
-      if (profitText) profitText.style.display = "flex";
+  knowLinks.forEach((knowLink) => {
+    knowLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const box = event.currentTarget.closest(".box");
+
+      // Check if the popup is already open for this box
+      if (activeBox === box && isPopupOpen) {
+        // Toggle popup: close it if clicking the same box again
+        closePopup();
+        return;
+      }
+
+      // If a different box is clicked while popup is open
+      if (isPopupOpen && activeBox !== box) {
+        // Keep the popup open but change its border color to the new box's border color
+        profitPopup.style.borderColor =
+          window.getComputedStyle(box).borderColor;
+        activeBox = box; // Set the new active box
+        return; // No need to close or re-open the popup
+      }
+
+      // Set popup to open for the first time
+      isPopupOpen = true;
+      activeBox = box; // Save the clicked box
+
+      // Get the border color of the clicked box and apply it to the popup
+      const boxBorderColor = window.getComputedStyle(box).borderColor;
+      profitPopup.style.borderColor = boxBorderColor;
+
+      // Show the popup
+      profitPopup.style.display = "flex";
+
+      // Disable "More..." links on other boxes to prevent multiple popups
+      knowLinks.forEach((link) => {
+        if (link !== event.currentTarget) {
+          link.style.pointerEvents = "none"; // Disable clicks on other links
+        }
+      });
+    });
+  });
+
+  // Close popup on "Back" button click
+  const popupBackButtons = document.querySelectorAll(".popup-back");
+  popupBackButtons.forEach((backButton) => {
+    backButton.addEventListener("click", function () {
+      closePopup();
+    });
+  });
+
+  // Handle the "More..." and "Less..." button inside the popup
+  moreBtnInPopup.addEventListener("click", function () {
+    if (profitPopup.classList.contains("popup-grow")) {
+      // If popup is grown, shrink it
+      profitPopup.classList.remove("popup-grow");
+      moreBtnInPopup.innerText = "More...";
     } else {
-      if (profitData) profitData.style.display = "none";
-      if (profitText) profitText.style.display = "none";
-      if (profitPopup) profitPopup.style.display = "flex";
+      // If popup is not grown, expand it
+      profitPopup.classList.add("popup-grow");
+      moreBtnInPopup.innerText = "Less...";
+    }
+  });
+
+  // Close popup if clicked outside the popup
+  document.addEventListener("click", function (event) {
+    if (
+      isPopupOpen &&
+      !profitPopup.contains(event.target) &&
+      !activeBox.contains(event.target)
+    ) {
+      closePopup();
     }
   });
 });
 
-const popubback = document.querySelectorAll(".popup-back");
+//grow boxes one by one
+// function applyAnimation(animationClass) {
+//   const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
+//   const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
+//   profitDiv.classList.add("appear");
+//   profitDiv.style.opacity = "1";
+//   // Sequence order for appearing
+//   const sequence = [3, 2, 4, 5, 1, 6];
 
-popubback.forEach((back) => {
-  back.addEventListener("click", function (event) {
-    profitPopup.style.display = "none";
-    if (profitData) profitData.style.display = "flex";
-    if (profitText) profitText.style.display = "flex";
-  });
-});
+//   // Define timing for the different stages
+//   const appearDuration = 500; // Time for box to appear (ms)
+//   const growDuration = 1200;  // Time for box to grow (ms)
+//   const shrinkDuration = 700; // Time for box to shrink back (ms)
 
-//grow popup
-document.addEventListener("DOMContentLoaded", function () {
-  const popup = document.querySelector(".popup");
-  const more = document.getElementById("more");
+//   // Function to animate a single box (appear -> grow -> shrink)
+//   function animateBox(box, isThirdBox, callback) {
+//     // Remove any existing transition to prevent cubic-bezier effect during onload animation
+//     box.style.transition = 'none';
 
-  more.addEventListener("click", function () {
-    popup.classList.add("popup-grow");
-  });
-});
+//     // Set box to initial height and make it visible
+//     assignRandomHeight(box, isThirdBox);
+//     box.classList.add("appear", animationClass);
+
+//     // Step 1: Apply no transition for initial appearance
+//     setTimeout(() => {
+//       // Apply cubic-bezier and grow the box after it appears
+//       box.style.transition = 'height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.6s ease, opacity 0.6s ease';
+
+//       if (isThirdBox) {
+//         box.style.height = "220px"; // Third box grows to 220px
+//       } else {
+//         box.style.height = box.dataset.growHeight; // Other boxes grow to their grow height
+//       }
+
+//       // Step 2: After growth, shrink the box back to its initial height
+//       setTimeout(() => {
+//         box.style.height = isThirdBox ? "30px" : box.dataset.initialHeight; // Shrink third box to 30px, others to their initial height
+
+//         // Step 3: Call the callback to trigger the next box
+//         setTimeout(() => {
+//           if (callback) callback();
+//         }, shrinkDuration);
+//       }, growDuration);
+//     }, appearDuration);
+//   }
+
+//   // Function to animate all boxes in sequence
+//   function animateBoxesInSequence(boxes, callback) {
+//     let index = 0;
+
+//     function nextBox() {
+//       if (index >= sequence.length) {
+//         if (callback) callback(); // If finished, trigger the callback to start lower div
+//         return; // End if all boxes are done
+//       }
+
+//       const order = sequence[index]; // Get the current box in the sequence
+//       const box = boxes[order - 1];
+//       const isThirdBox = order === 3;
+
+//       // Animate the current box, and move to the next one after it's done
+//       animateBox(box, isThirdBox, nextBox);
+//       index++;
+//     }
+
+//     // Start the sequence
+//     nextBox();
+//   }
+
+//   // Animate upper div boxes first, then lower div boxes after upper div completes
+//   animateBoxesInSequence(upperDivBoxes, () => {
+//     // After upperDivBoxes animation completes, start lowerDivBoxes animation
+//     animateBoxesInSequence(lowerDivBoxes);
+//   });
+// }

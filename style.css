@@ -13,11 +13,11 @@
     --font-anek: "Anek Latin", sans-serif;
     --clr-heading: #000000;
     --clr-subhead: #000000;
-    --border-warm1: #90a8c3;
-    --border-warm2: #FF6500;
-    --border-warm3: #FF8A08;
-    --border-warm4: #FFC100;
-    --border-cold1: #bce784;
+    --border-warm1: #FF8C00;
+    --border-warm2: #FF0000;
+    --border-warm3: #FFFF00;
+    --border-warm4: #8B4513;
+    --border-cold1: #00FFFF;
     --border-cold2: #5dd39e;
     --border-cold3: #348aa7;
     --border-cold4: #525174;
@@ -87,6 +87,8 @@ body {
     width: 0;
 }
 
+
+
 .lower-div {
     overflow-x: auto;
     height: 240px;
@@ -94,7 +96,7 @@ body {
     /* padding-right: 1rem; */
 }
 
-.lower-div .box-content1{
+.lower-div .box-content1 {
     transform: rotate(0deg);
 }
 
@@ -114,7 +116,7 @@ body {
     transition: transform 0.6s ease, opacity 0.6s ease;
     background: var(--box-clr);
     position: relative;
-    z-index: 1; 
+    z-index: 1;
 }
 
 .profit.appear {
@@ -183,34 +185,20 @@ body {
     height: 20px;
     opacity: 0;
     transform: translateY(-30px);
-    transition: transform 0.6s ease, opacity 0.6s ease, height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: transform 0.9s ease, opacity 0.9s ease, height 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     border: 2pt solid transparent;
     position: relative;
     cursor: pointer;
 }
 
-@keyframes bounceHeight {
-    0% {
-      height: var(--initial-height);
-    }
-    50% {
-      height: var(--grow-height);
-    }
-    100% {
-      height: var(--initial-height);
-    }
-  }
-  
-  .box.bounce-animation {
-    animation: bounceHeight 1s infinite alternate cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    /* Randomness in timing */
-    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* Smooth easing */
-  }
-  
 /* Growing Animation*/
 .box.expand {
     /* animation: grow 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; */
     animation: grow 0.4s ease forwards;
+}
+
+.growbox {
+    animation: grow 0.7s ease alternate;
 }
 
 @keyframes grow {
@@ -302,7 +290,7 @@ body {
     justify-content: center;
     gap: 1rem;
     /* align-items: center; */
-    transition: transform 0.6s ease, opacity 0.6s ease;
+    transition: transform 2s ease, opacity 2s ease;
 }
 
 .box.hidden {
@@ -588,7 +576,7 @@ body {
     display: none;
 }
 
-.know{
+.know {
     text-align: right;
 }
 
@@ -660,7 +648,7 @@ body {
 /* popups */
 /* main container popup */
 .popup {
-    width: 80vw;
+    width: 90vw;
     height: 100pt;
     border-radius: 8pt;
     border: var(--border-cold2) 2pt solid;
@@ -672,18 +660,22 @@ body {
     background: var(--box-clr);
     position: fixed;
     bottom: 35%;
-    left: 10%;
+    left: 5%;
     z-index: 100;
+    gap: 1rem;
 }
 
-.popup-grow{
+.popup-grow {
     height: 280pt;
     bottom: 2%;
 }
 
-#more{
+#more {
     font-size: 8pt;
     cursor: pointer;
+    position: absolute;
+    right: 1%;
+    bottom: 2%;
 }
 
 .profit-popup2 {
@@ -720,7 +712,29 @@ body {
     font-size: 10pt;
 }
 
-.graph {
-    /* width: 200px;
-    height: 200px; */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+    /* border-color: red !important; */
 }

@@ -80,6 +80,7 @@ body {
     /* padding-left: 1rem; */
     /* padding-right: 1rem; */
     display: flex;
+    height: 240px;
 }
 
 .upperdiv::-webkit-scrollbar {
@@ -88,8 +89,13 @@ body {
 
 .lower-div {
     overflow-x: auto;
+    height: 240px;
     /* padding-left: 1rem; */
     /* padding-right: 1rem; */
+}
+
+.lower-div .box-content1{
+    transform: rotate(0deg);
 }
 
 .lower-div::-webkit-scrollbar {
@@ -108,7 +114,7 @@ body {
     transition: transform 0.6s ease, opacity 0.6s ease;
     background: var(--box-clr);
     position: relative;
-    z-index: 1;
+    z-index: 1; 
 }
 
 .profit.appear {
@@ -169,21 +175,8 @@ body {
     padding-right: 2rem;
     /* display: none; */
 }
-.showmesg {
-    position: absolute;
-    top: 32%;
-    left: 38.5%;
-    font-size: 9pt;
-    display: block;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: transform 0.6s ease, opacity 0.6s ease;
-}
 
-.showmesg.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 .box {
     background: var(--box-clr);
     min-width: 190px;
@@ -193,8 +186,27 @@ body {
     transition: transform 0.6s ease, opacity 0.6s ease, height 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     border: 2pt solid transparent;
     position: relative;
+    cursor: pointer;
 }
 
+@keyframes bounceHeight {
+    0% {
+      height: var(--initial-height);
+    }
+    50% {
+      height: var(--grow-height);
+    }
+    100% {
+      height: var(--initial-height);
+    }
+  }
+  
+  .box.bounce-animation {
+    animation: bounceHeight 1s infinite alternate cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* Randomness in timing */
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* Smooth easing */
+  }
+  
 /* Growing Animation*/
 .box.expand {
     /* animation: grow 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; */
@@ -502,9 +514,10 @@ body {
 
 .prevup,
 .nextup {
-    position: absolute;
+    position: fixed;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
+    bottom: 33%;
     color: white;
     padding: 10px;
     border: none;
@@ -562,7 +575,7 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     position: fixed;
-    top: 66%;
+    top: 66.8%;
 }
 
 .prevlow {
@@ -575,6 +588,10 @@ body {
     display: none;
 }
 
+.know{
+    text-align: right;
+}
+
 .know a {
     text-decoration: none;
     color: var(--clr-link);
@@ -583,8 +600,9 @@ body {
 
 .prevup,
 .nextup {
-    position: absolute;
+    position: fixed;
     /* top: 20%; */
+    bottom: 55%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -642,8 +660,8 @@ body {
 /* popups */
 /* main container popup */
 .popup {
-    width: 50vw;
-    height: 240pt;
+    width: 80vw;
+    height: 100pt;
     border-radius: 8pt;
     border: var(--border-cold2) 2pt solid;
     position: relative;
@@ -653,9 +671,19 @@ body {
     display: none;
     background: var(--box-clr);
     position: fixed;
-    bottom: 10%;
-    left: 20%;
+    bottom: 35%;
+    left: 10%;
     z-index: 100;
+}
+
+.popup-grow{
+    height: 280pt;
+    bottom: 2%;
+}
+
+#more{
+    font-size: 8pt;
+    cursor: pointer;
 }
 
 .profit-popup2 {
