@@ -551,6 +551,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+const box2 = document.getElementById("box2");
+box2.addEventListener("click", function (event) {
+  event.stopPropagation();
+  const container1 = document.getElementById("container1");
+  const container2 = document.getElementById("container2");
+  container1.style.display = "none";
+  container2.style.display = "flex";
+  applyAnimation("appear");
+});
 
 //grow boxes one by one
 // function applyAnimation(animationClass) {
