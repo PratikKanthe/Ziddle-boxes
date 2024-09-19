@@ -185,7 +185,8 @@ body {
     height: 20px;
     opacity: 0;
     transform: translateY(-30px);
-    transition: transform 0.9s ease, opacity 0.9s ease, height 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* transition: transform 0.9s ease, opacity 0.9s ease, height 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55); */
+    transition: transform 0.9s ease, opacity 0.9s ease, height 0.9s cubic-bezier(0.5, 0, 0.3, 1.2);
     border: 2pt solid transparent;
     position: relative;
     cursor: pointer;
