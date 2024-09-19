@@ -151,8 +151,11 @@ function handleBoxClick(event) {
   const isThirdBox = box.classList.contains("third-box");
 
   if (content.style.display === "none" || content.style.display === "") {
+    content.style.display = "flex";
+    //$(content).slideUp(300);
     setTimeout(() => {
-      content.style.display = "flex";
+      // content.style.display = "flex";
+      // $(content).slideUp(300).delay(800).fadeIn(400);
     }, 500); // Add content after 0.5 sec
 
     if (isThirdBox) {
@@ -203,7 +206,7 @@ function applyAnimation(animationClass) {
     }, index * 300);
   });
 
-  // Once all animations are done, trigger the addGrowAnimation animation
+  // Once all animations are done, trigger the addGrowAnimation animation for third box
   setTimeout(() => {
     addGrowAnimation();
   }, sequence.length * 300 + 500);
@@ -211,40 +214,16 @@ function applyAnimation(animationClass) {
 
 function addGrowAnimation() {
   const thirdBox = document.querySelector(".upperdiv .box:nth-child(3)");
+  const thirdBoxContent = document.querySelector(
+    ".upperdiv .box:nth-child(3) .box-content"
+  );
   if (thirdBox) {
-    thirdBox.classList.add("growbox");
+    thirdBox.style.height = "220px";
+    setTimeout(() => {
+      thirdBoxContent.style.display = "flex";
+    }, 700); // Add content after 0.5 sec
   }
 }
-
-// function applyBounceAnimation() {
-//   const upperDivBoxes = document.querySelectorAll(".upperdiv .box");
-//   const lowerDivBoxes = document.querySelectorAll(".lower-div .box");
-//   const thirdBox = document.querySelector(".thirdBox");
-
-//   function setBounceHeight(box, index) {
-//     const initialHeight = box.offsetHeight;
-//     const growHeight = initialHeight + 10;
-
-//     // Set heights as custom properties
-//     box.style.setProperty("--initial-height", `${initialHeight}px`);
-//     box.style.setProperty("--grow-height", `${growHeight}px`);
-
-//     // Generate a random delay for each box
-//     const randomDelay = Math.random() * 2; // Random delay between 0 and 2 seconds
-//     box.style.animationDelay = `${randomDelay}s`;
-
-//     // Add the bounce animation class
-//     box.classList.add("bounce-animation");
-//   }
-
-//   // Apply to upper and lower div boxes with random delays
-//   upperDivBoxes.forEach(setBounceHeight);
-//   lowerDivBoxes.forEach(setBounceHeight);
-
-//   if (thirdBox) {
-//     setBounceHeight(thirdBox);
-//   }
-// }
 
 // Stop all animations when a box is clicked
 document.querySelectorAll(".box").forEach((box) => {
@@ -511,6 +490,15 @@ document.addEventListener("DOMContentLoaded", function () {
       // Show the popup
       profitPopup.style.display = "flex";
 
+      var vParentClass = $(box).parent().attr("class");
+      //profitPopup.classList.remove("popup-grow");
+      profitPopup.classList.add("popup-grow");
+
+      if (vParentClass.indexOf("upperdiv") != -1) {
+        profitPopup.style.bottom = "2%";
+      } else {
+        profitPopup.style.bottom = "35%";
+      }
       // Disable "More..." links on other boxes to prevent multiple popups
       knowLinks.forEach((link) => {
         if (link !== event.currentTarget) {
@@ -530,6 +518,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle the "More..." and "Less..." button inside the popup
   moreBtnInPopup.addEventListener("click", function () {
+    const lowerDivPopup = $(".know")
+      .parent()
+      .parent(".box-radius2")
+      .parent(".box-radius2");
+    alert(lowerDivPopup);
     if (profitPopup.classList.contains("popup-grow")) {
       // If popup is grown, shrink it
       profitPopup.classList.remove("popup-grow");
@@ -537,6 +530,12 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       // If popup is not grown, expand it
       profitPopup.classList.add("popup-grow");
+      const popupPosition = document.getElementsByClassName("popup-grow");
+      if (lowerDivPopup) {
+        popupPosition.style.bottom = "35%";
+      } else {
+        popupPosition.style.bottom = "2%";
+      }
       moreBtnInPopup.innerText = "Less...";
     }
   });
